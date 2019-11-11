@@ -40,3 +40,6 @@ target_link_libraries(cf_1042B)
 # 1111
 add_executable(cf_189A 189A.cpp)
 target_link_libraries(cf_189A)
+
+add_executable(cf_489B 489B.cpp)
+target_link_libraries(cf_489B)
