@@ -27,12 +27,14 @@ void Case() {
     for (int i = 0; i < n; ++i) {
         scanf("%d", a + i);
     }
-    std::copy(a, a + n, b);
-    std::sort(a, a + n);
-    if (m < n) {
+    
+    if (m < n || n == 2) {
         printf("-1\n");
         return;
     }
+
+    std::copy(a, a + n, b);
+    std::sort(a, a + n);
 
     int sum = 0;
     for (int i = 0; i < n; ++i) {
