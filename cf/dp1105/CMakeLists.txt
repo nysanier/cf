@@ -67,3 +67,6 @@ target_link_libraries(cf_1200B)
 
 add_executable(cf_1176C 1176C.cpp)
 target_link_libraries(cf_1176C)
+
+add_executable(cf_961B 961B.cpp)
+target_link_libraries(cf_961B)
