@@ -46,3 +46,19 @@ target_link_libraries(cf_489B)
 
 add_executable(cf_72G 72G.cpp)
 target_link_libraries(cf_72G)
+
+# 1113
+add_executable(cf_665C 665C.cpp)
+target_link_libraries(cf_665C)
+
+add_executable(cf_331C1 331C1.cpp)
+target_link_libraries(cf_331C1)
+
+# 1118
+add_executable(cf_476B 476B.cpp)
+target_link_libraries(cf_476B)
+
+add_executable(cf_1037C 1037C.cpp)
+target_link_libraries(cf_1037C)
+
+
