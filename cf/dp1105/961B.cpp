@@ -52,22 +52,19 @@ int main() {
         if (i < k) {
             sumk[i] = suma[i];
         } else {
-            sumk[i] = a[i] + suma[i-1] - suma[i-k];
+            sumk[i] = suma[i] - suma[i-k];
         }
         // printf("%5d] %10d %10d %10d\n", i, sum[i], suma[i], sumk[i]);
     }
 
     int max_res = 0;
     for (int i = k - 1; i < n; ++i) {
-        int sumi_k = 0;
+        int sum_left = 0;
         if (i >= k) {
-            sumi_k = sum[i-k];
+            sum_left = sum[i-k];
         }
-        int sumi_1 = 0;
-        if (i + 1 < n) {
-            sumi_1 = sum[n-1] - sum[i+1];
-        }
-        int v = sumi_k + sumk[i] + sumi_1;
+        int sum_right = sum[n-1] - sum[i];
+        int v = sum_left + sumk[i] + sum_right;
         max_res = std::max(max_res, v);
     }
 
