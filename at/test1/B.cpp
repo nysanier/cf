@@ -23,15 +23,32 @@ void Dump(const int a[], int sz) {
     }
 }
 
-int a, b, c;
+int N, Q;
 char s[123];
+char ques[2];
 
 int main() {
     // printf(">> \n");
-    scanf("%d %d %d %s", &a, &b, &c, s);
-    int res = a + b + c;
+    scanf("%d %d", &N, &Q);
+    for (int i = 0; i < N; ++i) {
+        s[i] = 'A' + i;
+    }
+    s[N] = '\0';
 
-    printf("%d %s\n", res, s);
+    auto cmp = [](char a, char b) -> bool {
+        printf("? %c %c\n", a, b);
+        // fflush(stdout);
+        // scanf("%s", ques);
+        // if (ques[0] == '<') {
+        //     return true;
+        // }
+
+        // return false;
+        return a > b;
+    };
+    std::sort(s, s + N, cmp);
+
+    printf("! %s\n", s);
 
     return 0;
 }
