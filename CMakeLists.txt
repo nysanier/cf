@@ -14,8 +14,7 @@ endif()
 
 add_compile_options(-Wall)
 
-include_directories(SYSTEM /usr/local/include)
-link_directories(/usr/local/lib)
+include_directories(SYSTEM include)  # for self/bits/stdc++.h, common c/c++ headers
 
 add_subdirectory(cf)
 add_subdirectory(at)

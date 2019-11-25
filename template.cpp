@@ -39,6 +39,14 @@ void Dump(const std::vector<int>& vec) {
     }
 }
 
+template <typename C>
+void Dump(const C& c) {
+    for (auto v : c) {
+        // printf("[%d] %d\n", i, vec[i]);
+        printf("%d\n", v);
+    }
+}
+
 int n;
 int a[N];
 
