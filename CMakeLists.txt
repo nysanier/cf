@@ -14,5 +14,9 @@ endif()
 
 add_compile_options(-Wall)
 
+include_directories(SYSTEM /usr/local/include)
+link_directories(/usr/local/lib)
+
 add_subdirectory(cf)
 add_subdirectory(at)
+add_subdirectory(test)
