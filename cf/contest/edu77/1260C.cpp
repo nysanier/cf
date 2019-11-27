@@ -1,8 +1,5 @@
 #include <bits/stdc++.h>
 
-using ll = long long;
-const int N = 1e6 + 9;
-
 void Dump(const std::vector<int>& vec) {
     for (int i = 0; i < (int)vec.size(); ++i) {
         // printf("[%d] %d\n", i, vec[i]);
@@ -18,14 +15,34 @@ void Dump(const C& c) {
     }
 }
 
-int n;
-int a[N];
+int T;
+
+void Case() {
+    int r, b, k;
+    scanf("%d %d %d", &r, &b, &k);
+    if (r == b) {
+        puts("OBEY");
+        return;
+    }
+
+    if (r > b) {
+        std::swap(r, b);
+    }
+
+    auto d = b - r;
+    if (d / r >= k) {
+        puts("REBEL");
+        return;
+    }
+
+    puts("OBEY");
+}
 
 int main() {
     // printf(">\n");
-    scanf("%d", &n);
-    for (int i = 0; i < n; ++i) {
-        scanf("%d", a + i);
+    scanf("%d", &T);
+    while (T--) {
+        Case();
     }
 
     // std::cout << N << std::endl;
