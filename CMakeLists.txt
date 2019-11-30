@@ -19,4 +19,4 @@ include_directories(SYSTEM include)  # for self/bits/stdc++.h, common c/c++ head
 add_subdirectory(cf)
 add_subdirectory(at)
 add_subdirectory(test)
-add_subdirectory(temp)
+add_subdirectory(ut)
