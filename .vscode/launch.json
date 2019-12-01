@@ -9,7 +9,7 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/cbuild/cf/contest/cf600/cf_1253B",
+            "program": "${workspaceFolder}/cbuild/cf/contest/nerc2019/cf_1267B",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/cbuild",
