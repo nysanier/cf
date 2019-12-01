@@ -9,10 +9,10 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/cbuild/ut/ut_pbds_tree",
+            "program": "${workspaceFolder}/cbuild/cf/contest/cf600/cf_1253A",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/cbuild",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb"
