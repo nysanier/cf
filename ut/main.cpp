@@ -7,12 +7,13 @@
 #define for1r(i, n) for (auto i = n; i >= 1; --i)
 
 using ll = long long;
-using vi = std::vector<int>;
-using vll = std::vector<ll>;
-using pii = std::pair<int, int>;
-using pll = std::pair<ll, ll>;
-const int N = 1e6 + 9;
+using Vi = std::vector<int>;
+using Vll = std::vector<ll>;
+using Pii = std::pair<int, int>;
+using Pll = std::pair<ll, ll>;
 
+// -------------------------------------------------
+const int N = 1e6 + 9;
 int n;
 int a[N];
 
@@ -21,6 +22,7 @@ void Solve() {
     for0(i, n) scanf("%d", a + i);
     for0r(i, n) printf("%d\n", a[i]);
 }
+// -------------------------------------------------
 
 int main() {
 #ifndef ONLINE_JUDGE
