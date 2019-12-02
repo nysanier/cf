@@ -11,15 +11,20 @@ using vi = std::vector<int>;
 using vll = std::vector<ll>;
 using pii = std::pair<int, int>;
 using pll = std::pair<ll, ll>;
-const int N = 1e6 + 9;
 
 int n;
-int a[N];
 
 void Solve() {
     scanf("%d", &n);
-    for0(i, n) scanf("%d", a + i);
-    for0r(i, n) printf("%d\n", a[i]);
+    int sq = sqrt(n);
+    if (sq * sq < n) {
+        sq += 1;
+    }
+
+    // find the outside square
+    int b = sq;
+    int a = (n + sq - 1) / sq;
+    printf("%d\n", a + b);
 }
 
 int main() {

@@ -11,15 +11,20 @@ using vi = std::vector<int>;
 using vll = std::vector<ll>;
 using pii = std::pair<int, int>;
 using pll = std::pair<ll, ll>;
-const int N = 1e6 + 9;
 
-int n;
-int a[N];
+int n, k;
 
+// let x be take the option to put, so n-x eat
+// x^2 + 3x + -2(n+k) = 0
+// x = (-b+-sqrt(b^2-4ac)) / 2a
+// x = (-3+sqrt(9+8(n+k))/2
 void Solve() {
-    scanf("%d", &n);
-    for0(i, n) scanf("%d", a + i);
-    for0r(i, n) printf("%d\n", a[i]);
+    scanf("%d %d", &n, &k);
+    ll sq = sqrt(9+8ll*(n+k));
+    assert(sq * sq == 9+8ll*(n+k));
+    ll x = (-3+sq)/2;
+    ll ans = n - x;
+    printf("%lld\n", ans);
 }
 
 int main() {

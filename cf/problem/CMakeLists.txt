@@ -6,3 +6,6 @@ add_executable(cf_625D2 625D2.cpp)
 add_executable(cf_625E 625E.cpp)
 add_executable(cf_625E2 625E2.cpp)
 
+
+# 1202
+add_subdirectory(bs1202)

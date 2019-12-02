@@ -11,15 +11,32 @@ using vi = std::vector<int>;
 using vll = std::vector<ll>;
 using pii = std::pair<int, int>;
 using pll = std::pair<ll, ll>;
-const int N = 1e6 + 9;
+const int N = 2e5 + 9;
 
-int n;
-int a[N];
+int n, m;
+ll a[N];
+ll s[N];
+ll b;
 
 void Solve() {
-    scanf("%d", &n);
-    for0(i, n) scanf("%d", a + i);
-    for0r(i, n) printf("%d\n", a[i]);
+    scanf("%d %d", &n, &m);
+    for1(i, n) scanf("%lld", a + i);
+    s[0] = 0;
+    for1(i, n) s[i] = s[i-1] + a[i];
+
+    int p = 1;
+    for0(i, m) {
+        scanf("%lld", &b);
+        for (; p <= n; ++p) {
+            if (s[p] >= b && s[p-1] < b) {
+                break;
+            }
+        }
+        int f = p;
+        ll k = b - s[p-1];
+        // printf("p=%d, s[%d]=%lld\n", p, p, s[p]);
+        printf("%d %lld\n", f, k);
+    }
 }
 
 int main() {
