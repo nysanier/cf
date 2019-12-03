@@ -13,9 +13,7 @@ using Pii = std::pair<int, int>;
 using Pll = std::pair<ll, ll>;
 
 // -------------------------------------------------
-// const int N = 1e6 + 9;
 int c, m, x;
-// int a[N];
 
 bool Check(int a, int b) {
     if (a == b) return true;
@@ -37,27 +35,15 @@ void Solve() {
     }
 
     // d > x
-
-    // remove 1 from d, but add 2 to x
-    // f = d - n ~= x + 2n   --> 3n <= d-x
-    int n = (d - x) / 3;  // find the min n;
-
-    std::set<int> setx;
-    for (int i = -3; i <= 3; ++i) {
-        int n2 = n + i;
-        if (n2 < 0) {
-            continue;
-        }
-        int a = d - n2;
-        int b = x + 2 * n2;
-        if (Check(a, b)) {
-            // printf("%d %d ok\n", a, b);
-            setx.insert(n2);
-        }
-    }
-
-    int n3 = *setx.begin();
-    int ans = std::min(d - n3, x + 2 * n3);
+    // if d - x == 1, then can't move any from d to x
+    // if d - x == 2, then can move 1
+    // if d - x == 3, then can move 1
+    // if d - x == 1 + 3n, then can move n
+    // if d - x == 2 + 3n, then can move n + 1
+    int n2 = (d - x + 1) / 3;  // 1舍去，2合入，所以是+1再/3
+    int ans1 = d - n2;
+    int ans2 = x + 2 * n2;
+    int ans = std::min(ans1, ans2);
     printf("%d\n", ans);
 }
 // -------------------------------------------------
