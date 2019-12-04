@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.8)
 
-include_directories(SYSTEM /usr/local/include)  # for boost etc
-link_directories(/usr/local/lib) # for boost etc
-
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    include_directories(SYSTEM /usr/local/include)  # for boost etc
+    link_directories(/usr/local/lib) # for boost etc
+endif()
 
 # set(CMAKE_BUILD_TYPE "Release")  # 无法提升mac下thread切换效率
 
