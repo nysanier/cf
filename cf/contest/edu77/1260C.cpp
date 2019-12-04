@@ -17,10 +17,6 @@ using Si = std::set<int>;
 using Sll = std::set<ll>;
 
 // -------------------------------------------------
-const int N = 1e6 + 9;
-int n;
-int a[N];
-
 void Solve() {
     int r, b, k;
     scanf("%d %d %d", &r, &b, &k);
