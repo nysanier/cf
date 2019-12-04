@@ -5,8 +5,8 @@
 #define for1(i, n) for (auto i = decltype(n)(1); i <= n; ++i)
 #define for0r(i, n) for (auto i = n - 1; i >= 0; --i)
 #define for1r(i, n) for (auto i = n; i >= 1; --i)
-#define forxy(i, x, y) for (auto i = x; i <= y; ++i)
-#define foryx(i, x, y) for (auto i = y; i >= x; --i)
+#define forxy(i, x, y) for (auto i = x; i <= decltype(x)(y); ++i)
+#define foryx(i, x, y) for (auto i = y; i >= decltype(y)(x); --i)
 
 using ll = long long;
 using Vi = std::vector<int>;
@@ -17,25 +17,28 @@ using Si = std::set<int>;
 using Sll = std::set<ll>;
 
 // -------------------------------------------------
-const int N = 1e6 + 9;
+const int N = 1e2 + 9;
 int n;
 int a[N];
 
 void Solve() {
-    int r, b, k;
-    scanf("%d %d %d", &r, &b, &k);
-    auto x = std::__gcd(r, b);
-    r /= x;
-    b /= x;
-
-    if (b < r) {
-        std::swap(r, b);
+    scanf("%d", &n);
+    for0(i, n) scanf("%d", a + i);
+    std::sort(a, a + n);
+    std::list<int> ans;
+    ans.push_back(a[0]);
+    ans.push_back(a[1]);
+    auto it = --ans.end();  // point to the last one
+    forxy(i, 2, n-1) {
+        ans.insert(it, a[i]);
+        if (i % 2 == 1) {
+            --it;
+        }
     }
-
-    if ((k - 1) * ll(r) + 1 < b)
-		puts("REBEL");
-	else
-		puts("OBEY");
+    for (auto v : ans) {
+        printf("%d ", v);
+    }
+    printf("\n");
 }
 // -------------------------------------------------
 
@@ -44,7 +47,7 @@ int main() {
     ::freopen("../input.txt", "r", stdin);
 #endif
 
-#if 1
+#if 0
     int t;
     scanf("%d", &t);
     for0(i, t) Solve();

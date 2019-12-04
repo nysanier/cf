@@ -11,3 +11,6 @@ add_executable(cf_1221C 1221C.cpp)
 
 # 1203
 add_executable(cf_743B 743B.cpp)
+
+# 1204
+add_executable(cf_1131C 1131C.cpp)
