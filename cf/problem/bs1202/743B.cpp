@@ -17,14 +17,47 @@ using Si = std::set<int>;
 using Sll = std::set<ll>;
 
 // -------------------------------------------------
-const int N = 1e6 + 9;
+const int N = 1e2 + 9;
 int n;
-int a[N];
-
+ll k;
+ll a[N];
+ 
 void Solve() {
-    scanf("%d", &n);
-    for0(i, n) scanf("%d", a + i);
-    for0r(i, n) printf("%d\n", a[i]);
+    scanf("%d %lld", &n, &k);
+    a[1] = 1;
+    forxy(i, 2, n) a[i] = 2 * a[i-1] + 1;
+    int i = 0, j = n;
+    while (i < j) {
+        int h = (i + j) / 2;
+        if (a[h] < k) {
+            i = h + 1;
+        } else {
+            j = h;
+        }
+    }
+
+    // i is the n
+    while (i > 1) {
+        // k is in the middle of a[i]
+        if (k == a[i-1] + 1) {
+            printf("%d\n", i);
+            return;
+        }
+ 
+        // in the left
+        if (k < a[i-1] + 1) {
+            --i;
+            continue;
+        }
+ 
+        // in the right
+        // k > a[i-1] + 1
+        k -= a[i-1] + 1;
+        --i;
+    }
+
+    assert(i == 1 && k == 1);
+    puts("1");
 }
 // -------------------------------------------------
 

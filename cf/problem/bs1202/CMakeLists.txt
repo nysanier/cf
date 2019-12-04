@@ -8,3 +8,6 @@ add_executable(cf_1195B 1195B.cpp)
 add_executable(cf_1099B 1099B.cpp)
 add_executable(cf_492B 492B.cpp)
 add_executable(cf_1221C 1221C.cpp)
+
+# 1203
+add_executable(cf_743B 743B.cpp)
