@@ -8,6 +8,9 @@
 #define forxy(i, x, y) for (auto i = x; i <= y; ++i)
 #define foryx(i, x, y) for (auto i = y; i >= x; --i)
 
+#define debugf(fmt, args...) printf("***DEBUG*** " fmt, ##args)
+// #define debugf(fmt, args...)
+
 using ll = long long;
 using Vi = std::vector<int>;
 using Vll = std::vector<ll>;
@@ -23,8 +26,15 @@ int a[N];
 
 void Solve() {
     scanf("%d", &n);
-    for0(i, n) scanf("%d", a + i);
-    for0r(i, n) printf("%d\n", a[i]);
+    for0(i, n) {
+        scanf("%d", a + i);
+    }
+
+    // output
+    for0(i, n) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
 }
 // -------------------------------------------------
 
