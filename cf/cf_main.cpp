@@ -19,6 +19,7 @@ using ll = long long;
 using Vi = std::vector<int>;
 using Pii = std::pair<int, int>;
 using Si = std::set<int>;
+using Mii = std::map<int, int>;
 
 // -------------------------------------------------
 const int N = 1e6 + 9;
