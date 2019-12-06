@@ -21,22 +21,18 @@ using Pii = std::pair<int, int>;
 using Si = std::set<int>;
 
 // -------------------------------------------------
-const int N = 1e6 + 9;
-int n;
-int a[N];
+int n, x, a, b;
 
 void Solve() {
-    scanf("%d", &n);
-    for0(i, n) {
-        scanf("%d", a + i);
-    }
-
-    // for0(i, n) dbg("%d", i);
-    // output
-    for0(i, n) {
-        printf("%d ", a[i]);
-    }
-    printf("\n");
+    scanf("%d %d %d %d", &n, &x, &a, &b);
+    if (a > b) std::swap(a, b);
+    auto m1 = std::min(a - 1, x);
+    dump(m1);
+    a -= m1; x -= m1;
+    auto m2 = std::min(n - b, x);
+    dump(m2);
+    b += m2; x -= m2;
+    printf("%d\n", b - a);
 }
 // -------------------------------------------------
 
@@ -45,7 +41,7 @@ int main() {
     ::freopen("../input.txt", "r", stdin);
 #endif
 
-#if 0
+#if 1
     int t;
     scanf("%d", &t);
     for0(i, t) Solve();
