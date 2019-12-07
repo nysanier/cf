@@ -20,22 +20,22 @@
 
 using ll = long long;
 using Vi = std::vector<int>;
-using Pii = std::pair<int, int>;
+using Pi = std::pair<int, int>;
 using Si = std::set<int>;
-using Mii = std::map<int, int>;
+using Mi = std::map<int, int>;
 
 // -------------------------------------------------
 const int N = 1e6 + 9;
 int n;
 int a[N];
 void Solve() {
-    scanf("%d",&n);
-    for0(i,n){
-        scanf("%d",a+i);
+    scanf("%d", &n);
+    for0(i, n) {
+        scanf("%d", a+i);
     }
     // output
-    // for0(i,n){
-    //     printf("%d ",a[i]);
+    // for0(i, n) {
+    //     printf("%d ", a[i]);
     // }
     // printf("\n");
 }

@@ -5,60 +5,65 @@
 #define for1(i, n) for (auto i = decltype(n)(1); i <= n; ++i)
 #define for0r(i, n) for (auto i = n - 1; i >= 0; --i)
 #define for1r(i, n) for (auto i = n; i >= 1; --i)
+#define forxy(i, x, y) for (auto i = x; i <= y; ++i)
+#define foryx(i, x, y) for (auto i = y; i >= x; --i)
+#define pb push_back
+#define fi first
+#define se second
+
+#ifndef ONLINE_JUDGE
+# define dbg(fmt, args...) printf("***DEBUG*** " fmt "\n", ##args)
+#else
+# define dbg(fmt, args...)
+#endif
+#define dump(e) dbg("dump: " #e "=%d", e)
 
 using ll = long long;
-using pii = std::pair<int, int>;
-using pll = std::pair<ll, ll>;
+using Vi = std::vector<int>;
+using Pi = std::pair<int, int>;
+using Si = std::set<int>;
+using Mi = std::map<int, int>;
+
+// -------------------------------------------------
 const int N = 1e2 + 9;
-
-int n, m;
+int n,m;
 int a[N][N];
-int dp[N][N][N];
-
-// f(n, 0) = max(f1, f2)
-// f1 = f(m-1, a[m][n]) + 1
-// f2 = f(m-1, 0)
-
-int f(int k, std::vector<int> vec) {
-    assert(vec.size() == n);
-    if (k == 0) {
-        return 0;
-    }
-
-    std::vector<int> ex(n+1);
-    for (auto idx : vec) {
-        for1(i, n)
-            ex[i] += a[idx][i];
-    }
-    for1(i, n-1) {
-        if ()
-    }
-
-    return 0;
-}
-
+int res[N];
 void Solve() {
     scanf("%d %d", &n, &m);
-    for1(i, m)
-        for1(j, n)
-            scanf("%d", &a[m][j]);
-    for0(i,n+1)
-        a[0][i] = 0;
-
-    memset(dp, -1, sizeof(dp));
-
-    for0(i,n+1)
-        dp[0][i] = 0;
-    for1(i,m)
-        dp[i][0] = 0;
-
-    for1(i, m)
-        for1(j, m) {
-            int f2 = dp[i-1][0];
-
-            dp[i][j] = f(i, a[i][n]);
+    for0(i, m) {
+        for0(j, n)
+            scanf("%d", a[i]+j);
+    }
+    int ans = m;
+    for0(i, m) res[i] = i;
+    for0(i, n-1) {  // for all other n-1 candidates
+        dump(i);
+        Pi pi[N];
+        for0(j, m) pi[j] = {a[j][n-1]-a[j][i], j};
+        std::sort(pi, pi+m);
+        int sum = 0;
+        int j = 0;
+        for (; j < m; ++j) {  // pick more poll stations
+            sum -= pi[j].fi;
+            if (sum < 0) {
+                dump(sum);
+                break;
+            }
         }
+        if (m-j < ans) {  // the other poll stations must be canceled
+            dbg("new ans i = %d, j = %d", i, j);
+            ans = m-j;
+            forxy(p, j, m-1) res[p-j] = pi[p].se;
+        }
+    }
+    printf("%d\n", ans);
+    for0(i, ans) {
+        printf("%d ", res[i]+1);
+    }
+    printf("\n");
 }
+// -------------------------------------------------
 
 int main() {
 #ifndef ONLINE_JUDGE
