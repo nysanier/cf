@@ -25,19 +25,31 @@ using Si = std::set<int>;
 using Mii = std::map<int, int>;
 
 // -------------------------------------------------
-const int N = 1e6 + 9;
+const int N = 2e5 + 9;
 int n;
 int a[N];
+int f[N];
+const int inf=1e9;
 void Solve() {
     scanf("%d",&n);
     for0(i,n){
         scanf("%d",a+i);
     }
-    // output
-    // for0(i,n){
-    //     printf("%d ",a[i]);
-    // }
-    // printf("\n");
+    if(n==1)
+        {puts("-1");return;}
+    Mii mapx;
+    for0(i,n){
+        auto it=mapx.find(a[i]);
+        if(it==mapx.end())
+            f[i]=inf,mapx[a[i]]=i;
+        else
+            f[i]=i-it->se+1,it->se=i;
+    }
+    int m=inf;
+    for0(i,n)
+        if(f[i]<m) m=f[i];
+    if(m==inf) m=-1;
+    printf("%d\n",m);
 }
 // -------------------------------------------------
 
@@ -46,7 +58,7 @@ int main() {
     ::freopen("../input.txt", "r", stdin);
 #endif
 
-#if 0
+#if 1
     int t;
     scanf("%d", &t);
     for0(i, t) Solve();
