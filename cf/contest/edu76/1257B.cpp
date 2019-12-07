@@ -7,7 +7,6 @@
 #define for1r(i, n) for (auto i = n; i >= 1; --i)
 #define forxy(i, x, y) for (auto i = x; i <= y; ++i)
 #define foryx(i, x, y) for (auto i = y; i >= x; --i)
-#define pb push_back
 
 #ifndef ONLINE_JUDGE
 # define dbg(fmt, args...) printf("***DEBUG*** " fmt "\n", ##args)
@@ -23,20 +22,26 @@ using Si = std::set<int>;
 using Mii = std::map<int, int>;
 
 // -------------------------------------------------
-const int N = 1e6+9;
-int n;
-int a[N];
+int x,y;
 void Solve() {
-    scanf("%d",&n);
-    for0(i,n) {
-        scanf("%d",a+i);
+    scanf("%d%d",&x,&y);
+    if(y==1) {
+        puts("YES");
+        return;
     }
-    // for0(i,n) dbg("%d",i);
-    // output
-    for0(i,n) {
-        printf("%d ",a[i]);
+    if(x==1) {
+        puts("NO");
+        return;
     }
-    printf("\n");
+    // 2->1|3->2, so 2|3->2|3
+    if(x==2||x==3) {
+        if(y==2||y==3) puts("YES");
+        else puts("NO");
+        return;
+    }
+    // n -> 4 if n > 4
+    // 4 -> 6 -> 9 -> 8 -> 12 -> 18 -> 27 -> 26 -> 39 -> 38 -> 57 -> 56 ... -> inf -> inf-1 -> every y
+    puts("YES");
 }
 // -------------------------------------------------
 
@@ -45,7 +50,7 @@ int main() {
     ::freopen("../input.txt", "r", stdin);
 #endif
 
-#if 0
+#if 1
     int t;
     scanf("%d", &t);
     for0(i, t) Solve();
