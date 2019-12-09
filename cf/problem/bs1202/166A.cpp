@@ -16,7 +16,7 @@
 #else
 # define dbg(fmt, args...)
 #endif
-#define dump(e) dbg("dump: " #e "=%d", e)
+// #define dump(e) dbg("dump: " #e "=%d", e)
 
 using ll = long long;
 using Vi = std::vector<int>;
@@ -25,19 +25,27 @@ using Si = std::set<int>;
 using Mi = std::map<int, int>;
 
 // -------------------------------------------------
-const int N = 1e6 + 9;
-int n;
-int a[N];
+const int N = 5e1 + 9;
+int n, k;
+Pi a[N];
 void Solve() {
-    scanf("%d", &n);
+    scanf("%d %d", &n, &k);
+    int p, t;
     for0(i, n) {
-        scanf("%d", a+i);
+        scanf("%d %d", &p, &t);
+        a[i] = {-p, t};
+    }
+    std::sort(a, a + n);
+    auto v = a[k - 1];
+    auto m1 = std::lower_bound(a, a + n, v);
+    auto m2 = std::upper_bound(a, a + n, v);
+    auto ans = m2 - m1;
+    dbg("m1 = %d, m2 = %d\n", int(m1 - a), int(m2 - a));
+    for0(i, n) {
+        dbg("[%d] (%d,%d)", i, a[i].FI, a[i].SE);
     }
     // output
-    // for0(i, n) {
-    //     printf("%d ", a[i]);
-    // }
-    // printf("\n");
+    printf("%d\n", (int)ans);
 }
 // -------------------------------------------------
 

@@ -14,3 +14,6 @@ add_executable(cf_743B 743B.cpp)
 
 # 1204
 add_executable(cf_1131C 1131C.cpp)
+
+# 1209
+add_executable(cf_166A 166A.cpp)
