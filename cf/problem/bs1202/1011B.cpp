@@ -20,20 +20,31 @@ using Si = std::set<int>;
 using Mi = std::map<int, int>;
 
 // -------------------------------------------------
-const int N = 1e6 + 9;
+const int N = 1e2 + 9;
 const int INF = 1e9 + 21;
-int n;
+int n,m;
 int a[N];
 void Solve() {
-    scanf("%d", &n);
-    for0(i, n) {
+    scanf("%d%d", &n,&m);
+    Mi mi;
+    for0(i, m) {
         scanf("%d", a+i);
+        mi[a[i]]+=1;
+    }
+    Si res{0};
+    for(int i=1;;++i){
+        int sum=0;
+        for(auto& kv:mi){
+            sum+=kv.SE/i;
+        }
+        if(sum>=n) res.insert(i);
+        else break;
     }
     // output
     // for0(i, n) {
     //     printf("%d ", a[i]);
     // }
-    // printf("\n");
+    printf("%d\n",*--res.end());
 }
 // -------------------------------------------------
 
