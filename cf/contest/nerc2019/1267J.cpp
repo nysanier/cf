@@ -18,6 +18,7 @@ using Vi = std::vector<int>;
 using Pi = std::pair<int, int>;
 using Si = std::set<int>;
 using Mi = std::map<int, int>;
+using Ui = std::unordered_map<int, int>;
 
 // -------------------------------------------------
 const int N = 2e6 + 9;
@@ -26,37 +27,29 @@ int n;
 int a[N];
 void Solve() {
     scanf("%d", &n);
-    Mi mi;
+    Ui map1;
     for0(i, n) {
-        scanf("%d", a+i);
-        mi[a[i]]+=1;
+        scanf("%d", a+i);map1[a[i]]+=1;
     }
-    std::vector<Pi> v1;
-    for(auto& kv:mi){
-        v1.PB({kv.SE,kv.FI});
-    }
-    std::sort(v1.begin(),v1.end());
-    int m1=v1[0].FI;
-    Si s1{m1+1,m1};
-    for(int i=2;i<m1;++i){
-        int x=m1/i;
-        assert(x*i>=m1);
-        if(x*i==m1)
-            s1.insert(-x),s1.insert(-x-1);
-        else
-            s1.insert(-x-1);
-    }
-    for(auto& v:s1){
+    std::vector<Pi> vec1;
+    for(auto& kv:map1)
+        vec1.PB({kv.SE,kv.FI});
+    std::sort(vec1.begin(),vec1.end());
+    int m1=vec1[0].FI;
+    Si set1{1};
+    forxy(i,2,m1+1){
         bool flag=true;
-        for(auto& kv:mi){
-            // if(kv.SE/)
+        for(auto v:vec1){
+            int t=(v.FI+i-1)/i;
+            if(v.FI<t*(i-1)) {flag=false;break;}
         }
+        if(flag) set1.insert(i);
     }
-    // output
-    // for0(i, n) {
-    //     printf("%d ", a[i]);
-    // }
-    // printf("\n");
+    int s=*--set1.end();  // the max size
+    int sum=0;
+    for(auto v:vec1)
+        sum=(v.FI+s-1)/s;
+    printf("%d\n",sum);
 }
 // -------------------------------------------------
 

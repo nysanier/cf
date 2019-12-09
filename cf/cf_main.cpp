@@ -18,6 +18,7 @@ using Vi = std::vector<int>;
 using Pi = std::pair<int, int>;
 using Si = std::set<int>;
 using Mi = std::map<int, int>;
+using Ui = std::unordered_map<int, int>;
 
 // -------------------------------------------------
 const int N = 1e6 + 9;
