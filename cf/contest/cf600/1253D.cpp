@@ -21,33 +21,64 @@ using Set = std::set<Int>;
 using Map = std::map<Int, Int>;
 using Hash = std::unordered_map<Int, Int>;
 
+// union and find
+struct UnionFind {
+    static const int N = 2e5 + 9;
+    int* p = nullptr;  // for local var
+
+    // all point to self
+    UnionFind() {
+        p = new int[N];  // root
+        for (int i = 0; i < N; ++i) {
+            p[i] = i;  // first point to self
+        }
+    }
+
+    // find the root of x
+    int Find(int x) {
+        int r = x;
+        while (p[r] != r) {
+            r = p[r];
+        }
+
+        // zip all the element begin x and root
+        int i = x;
+        while (i != r) {
+            int tmp = p[i];
+            p[i] = r;  // point to root
+            i = tmp;
+        }
+        return r;
+    }
+
+    void Merge(int x, int y) {
+        int rx = Find(x);
+        int ry = Find(y);
+        if (rx == ry) return;
+        if (rx > ry) std::swap(rx, ry);
+        p[rx] = ry;  // point to the max one
+    }
+};
+
 // -------------------------------------------------
 const Int N = 2e5 + 9;
 const Int INF = 1e9 + 21;
 Int n,m;
-Vec a[N];  // 邻接表
-bool vis[N];  // 访问标记
-Int B=0;  // 当前能访问到的最大的点(编号)
-void Dfs(Int x){
-    vis[x]=true;
-    B=std::max(B,x);
-    for(auto y:a[x])
-        if(!vis[y]) Dfs(y);
-}
+UnionFind uf;
 void Solve() {
-    scanf("%d%d", &n,&m);
+    std::cin >> n >> m;
     Int x,y;
     for1(i, m) {
-        scanf("%d%d", &x,&y);
-        a[x].PB(y);
-        a[y].PB(x);
+        std::cin >> x >> y;
+        uf.Merge(x,y);
     }
-    std::fill(vis,vis+n,false);
     Int ans=0;
-    for1(x,n){
-        if(!vis[x]){
-            if(x<B) ++ans;
-            Dfs(x);
+    forxy(i,2,n){  // ?
+        Int u=uf.Find(i-1);
+        Int v=uf.Find(i);
+        if(u>v) {
+            ++ans;
+            uf.Merge(i-1,i);
         }
     }
     // output
@@ -60,8 +91,8 @@ int main() {
     ::freopen("../input.txt", "r", stdin);
 #endif
 
-    // std::ios_base::sync_with_stdio(false);
-    // std::cin.tie(nullptr);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
 
 #if 0
     Int t;

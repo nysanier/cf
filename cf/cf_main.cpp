@@ -44,8 +44,8 @@ int main() {
     ::freopen("../input.txt", "r", stdin);
 #endif
 
-    // std::ios_base::sync_with_stdio(false);
-    // std::cin.tie(nullptr);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
 
 #if 0
     Int t;
