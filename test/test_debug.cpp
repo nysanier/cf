@@ -1,4 +1,4 @@
-#include "dump.h"
+#include "debug.h"
 
 int main() {
     auto str=format("%d%c", 1, 'x');

@@ -11,4 +11,5 @@ add_executable(test_cpu test_cpu.cpp)
 target_link_libraries(test_cpu boost_timer)
 target_compile_options(test_cpu PRIVATE -O2 -Wall)
 
-add_executable(test_dump test_dump.cpp)
+add_executable(test_debug test_debug.cpp)
+add_executable(test_abbr test_abbr.cpp)

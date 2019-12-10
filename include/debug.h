@@ -6,12 +6,13 @@
 template<typename C>
 std::string ToStr(const C& c) {
     std::string ret("{");
-    for (auto n : c)
-        ret += std::to_string(n) + ",";
+    for (auto v : c)
+        ret += std::to_string(v) + ",";
     ret += "}";
     return ret;
 }
-std::string ToStr(const std::map<int, int>& c) {
+template<typename T1, typename T2>
+std::string ToStr(const std::map<T1, T2>& c) {
     std::string ret("{");
     for (auto& kv : c)
         ret += "<" + std::to_string(kv.first) + "," + std::to_string(kv.second) + ">,";
