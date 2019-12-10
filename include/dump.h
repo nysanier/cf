@@ -3,6 +3,21 @@
 #include <bits/stdc++.h>
 
 // debug
+template<typename C>
+std::string ToStr(const C& c) {
+    std::string ret("{");
+    for (auto n : c)
+        ret += std::to_string(n) + ",";
+    ret += "}";
+    return ret;
+}
+std::string ToStr(const std::map<int, int>& c) {
+    std::string ret("{");
+    for (auto& kv : c)
+        ret += "<" + std::to_string(kv.first) + "," + std::to_string(kv.second) + ">,";
+    ret += "}";
+    return ret;
+}
 template<typename... Args>
 std::string format(const std::string& fmt, Args... args) {
     auto sz = ::snprintf(nullptr, 0, fmt.c_str(), args...);  // effective char size
