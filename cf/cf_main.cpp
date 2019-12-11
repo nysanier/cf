@@ -13,19 +13,19 @@
 #define SE second
 
 // type
-using Int = int32_t;
-// using Int = int64_t;
-using Vec = std::vector<Int>;
-using Pair = std::pair<Int, Int>;
-using Set = std::set<Int>;
-using Map = std::map<Int, Int>;
-using Hash = std::unordered_map<Int, Int>;
+using ll = int32_t;
+// using ll = int64_t;
+using Vec = std::vector<ll>;
+using Pair = std::pair<ll, ll>;
+using Set = std::set<ll>;
+using Map = std::map<ll, ll>;
+using Hash = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const Int N = 1e6 + 9;
-const Int INF = 1e9 + 21;
-Int n;
-Int a[N];
+const ll N = 1e6 + 9;
+const ll INF = 1e9 + 21;
+ll n;
+ll a[N];
 void Solve() {
     std::cin >> n;
     for0(i, n) {
@@ -48,7 +48,7 @@ int main() {
     std::cin.tie(nullptr);
 
 #if 0
-    Int t;
+    ll t;
     std::cin >> t;
     for0(i, t) Solve();
 #else
