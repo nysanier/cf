@@ -84,19 +84,20 @@ void Solve() {
     f[0] = 1;  // not remove
     g[0] = 1;  // remove one!
     for1(i, n-1) {
+        ll g1 = 1;
+        ll g2 = 1;
         if (a[i] > a[i-1]) {  // keep a[i-1]
             f[i] = f[i-1] + 1;
-            g[i] = g[i-1] + 1;
+            g1 = g[i-1] + 1;
         } else {  // remove a[i-1]
             f[i] = 1;
-            if (i == 1) {
-                g[i] = 1;
-            } else if (a[i] > a[i-2]) {
-                g[i] = f[i-2] + 1;
-            } else {
-                g[i] = 1;  // ?
-            }
         }
+
+        if (i >=2 && a[i] > a[i-2]) {
+            g2 = f[i-2] + 1;
+        }
+
+        g[i] = std::max(g1, g2);
     }
     Set ans;
     for0(i, n) {
