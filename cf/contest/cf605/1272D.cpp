@@ -88,12 +88,15 @@ void Solve() {
         ll g2 = 1;
         if (a[i] > a[i-1]) {  // keep a[i-1]
             f[i] = f[i-1] + 1;
-            g1 = g[i-1] + 1;
         } else {  // remove a[i-1]
             f[i] = 1;
         }
 
-        if (i >=2 && a[i] > a[i-2]) {
+        // a[i] > a[i-1] and a[i] > a[i-2] can both 成立!!!
+        if (a[i] > a[i-1]) {
+            g1 = g[i-1] + 1;
+        }
+        if (i >= 2 && a[i] > a[i-2]) {
             g2 = f[i-2] + 1;
         }
 
