@@ -26,7 +26,6 @@ const ll N = 1e6 + 9;
 const ll INF = 1e9 + 21;
 ll n;
 ll a[N];
-// ll ans[N];
 void Solve() {
     std::cin >> n;
     for0(i, n) {
@@ -34,7 +33,7 @@ void Solve() {
     }
     // output
     // for0(i, n) {
-    //     std::cout << ans[i] << " ";
+    //     std::cout << a[i] << " ";
     // }
     // std::cout << "" << std::endl;
 }

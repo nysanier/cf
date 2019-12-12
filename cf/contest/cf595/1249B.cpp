@@ -22,21 +22,43 @@ using Map = std::map<ll, ll>;
 using Hash = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 1e6 + 9;
+const ll N = 2e5 + 9;
 const ll INF = 1e9 + 21;
 ll n;
 ll a[N];
-// ll ans[N];
+ll ans[N];
 void Solve() {
     std::cin >> n;
-    for0(i, n) {
+    for1(i, n) {
         std::cin >> a[i];
     }
+    std::fill(ans+1, ans+1+n, -1);
+    Set set1;
+    for1(i, n) {
+        if (ans[i] != -1) {
+            continue;
+        }
+        ll cur = i;
+        set1.insert(cur);
+        for (;;) {
+            ll nxt = a[cur];
+            if (set1.find(nxt) != set1.end()) {
+                auto sz = set1.size();
+                for (auto v : set1) {
+                    ans[v] = sz;
+                }
+                set1.clear();
+                break;  // over
+            }
+            set1.insert(nxt);
+            cur = nxt;
+        }
+    }
     // output
-    // for0(i, n) {
-    //     std::cout << ans[i] << " ";
-    // }
-    // std::cout << "" << std::endl;
+    for1(i, n) {
+        std::cout << ans[i] << " ";
+    }
+    std::cout << "" << std::endl;
 }
 // -------------------------------------------------
 
@@ -48,7 +70,7 @@ int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-#if 0
+#if 1
     ll t;
     std::cin >> t;
     for0(i, t) Solve();

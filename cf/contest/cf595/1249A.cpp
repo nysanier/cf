@@ -22,19 +22,31 @@ using Map = std::map<ll, ll>;
 using Hash = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 1e6 + 9;
+const ll N = 1e2 + 9;
 const ll INF = 1e9 + 21;
 ll n;
 ll a[N];
-// ll ans[N];
 void Solve() {
     std::cin >> n;
     for0(i, n) {
         std::cin >> a[i];
     }
+    std::sort(a, a+n);
+    bool flag = false;
+    for1(i, n-1) {
+        if (a[i] == a[i-1]+1) {
+            flag = true;
+            break;
+        }
+    }
+    if (flag)
+        std::cout << 2 << std::endl;
+    else
+        std::cout << 1 << std::endl;
+
     // output
     // for0(i, n) {
-    //     std::cout << ans[i] << " ";
+    //     std::cout << a[i] << " ";
     // }
     // std::cout << "" << std::endl;
 }
@@ -48,7 +60,7 @@ int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-#if 0
+#if 1
     ll t;
     std::cin >> t;
     for0(i, t) Solve();
