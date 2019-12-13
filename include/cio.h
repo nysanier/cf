@@ -45,3 +45,15 @@ template<typename... Args>
 void co(Args... args) {}
 template<typename T, typename... Args>
 void co(T val, Args... args) { std::cout << val << " "; co(args...); }
+
+template<typename... Args>
+std::string sol(Args... args) {
+}
+template<typename T>
+std::string sol(const T& val) {
+    return std::to_string(val);
+}
+template<typename T, typename... Args>
+std::string sol(T val, Args... args) {
+    return std::to_string(val) + "," + sol(args...);
+}
