@@ -4,22 +4,22 @@
 
 // template
 template<typename... Args>
-inline bool co(Args... args) {
+inline bool stream_out(Args... args) {
     return true;
 }
 
 // full special
 template<typename T>
-inline bool co(const T& val) {
+inline bool stream_out(const T& val) {
     std::cout << val << std::endl;
     return true;
 }
 
 // part special
 template<typename T, typename... Args>
-inline bool co(T val, Args... args) {
+inline bool stream_out(T val, Args... args) {
     std::cout << val << " ";
-    return co(args...);
+    return stream_out(args...);
 }
 
 // 没有明显的退出点?完全模版和完全特化模版合一
@@ -34,3 +34,14 @@ inline std::string stream_params(std::basic_ostream<char>& stream, T val, Args..
     stream << val << " ";
     return stream_params(stream, args...);
 }
+
+
+// ci/co
+template<typename... Args>
+void col(Args... args) { std::cout << std::endl; }
+template<typename T, typename... Args>
+void col(T val, Args... args) { std::cout << val << " "; col(args...); }
+template<typename... Args>
+void co(Args... args) {}
+template<typename T, typename... Args>
+void co(T val, Args... args) { std::cout << val << " "; co(args...); }
