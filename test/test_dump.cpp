@@ -11,8 +11,9 @@ int main() {
     std::set<long> g{1,3,4,1};
     std::pair<std::string, long> h{"abc", 123};
     std::map<long, std::string> i{{1,"a"},{3,"c"},{2,"b"},{1,"d"}};
+    std::vector<std::vector<long>> j{{1,2,3},{9,8,7}};
 
-    // DUMP();
+    DUMP();
     DUMP(a);
     DUMP(a, b);
     DUMP(a, b, c);
@@ -22,6 +23,7 @@ int main() {
     DUMP(a,b,c,d,e,f,g);
     DUMP(a,b,c,d,e,f,g,h);
     DUMP(a,b,c,d,e,f,g,h,i);
+    DUMP(a,b,c,d,e,f,g,h,i,j);
 
     return 0;
 }

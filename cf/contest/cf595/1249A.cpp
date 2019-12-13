@@ -1,5 +1,10 @@
 #include <bits/stdc++.h>
-#include <bits/extc++.h>
+// #include <bits/extc++.h>
+#ifndef ONLINE_JUDGE
+# include <dump.h>
+#else
+# define DUMP(args...)
+#endif
 
 // abbr
 #define for0(i, n) for (auto i = decltype(n)(0); i < n; ++i)
@@ -8,9 +13,6 @@
 #define for1r(i, n) for (auto i = n; i >= 1; --i)
 #define forxy(i, x, y) for (auto i = x; i <= y; ++i)
 #define foryx(i, x, y) for (auto i = y; i >= x; --i)
-#define PB push_back
-#define FI first
-#define SE second
 
 // type
 using ll = int32_t;
@@ -39,16 +41,13 @@ void Solve() {
             break;
         }
     }
+    for0(i, n) {
+        DUMP(i, n, a[i]);
+    }
     if (flag)
         std::cout << 2 << std::endl;
     else
         std::cout << 1 << std::endl;
-
-    // output
-    // for0(i, n) {
-    //     std::cout << a[i] << " ";
-    // }
-    // std::cout << "" << std::endl;
 }
 // -------------------------------------------------
 
@@ -59,6 +58,7 @@ int main() {
 
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
 #if 1
     ll t;

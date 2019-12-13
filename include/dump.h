@@ -73,8 +73,6 @@ std::string Merge(const std::string& s1, const std::vector<std::string>& v2) {
     for (size_t i = 0, j = 0; i < v1.size() && j < v2.size(); ++i, ++j) {
         res += v1[i] + "=" + v2[j] + ";";
     }
-    // if (!res.empty())
-    //     res.resize(res.size()-1);
     return res;
 }
 
@@ -83,7 +81,7 @@ std::string Merge(const std::string& s1, const std::vector<std::string>& v2) {
     do { \
         const std::string s1 = #args; \
         std::vector<std::string> v2; \
-        ToVec(v2, args); \
+        ToVec(v2, ##args); \
         auto res = Merge(s1, v2); \
         std::cerr << "***DUMP*** " << res << std::endl; \
      } while (0)
