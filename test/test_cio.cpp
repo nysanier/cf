@@ -8,5 +8,8 @@ int main() {
     long e = 5;
     co(a, b, c, d, e);
 
+    // ?
+    stream_params(std::cout, a, b, c);
+
     return 0;
 }
