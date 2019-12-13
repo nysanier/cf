@@ -11,6 +11,8 @@
 #define PB push_back
 #define FI first
 #define SE second
+#define col(e) (std::cout << (e) << std::endl)
+#define co(e) (std::cout << (e) << " ")
 
 // type
 using ll = int32_t;
@@ -34,9 +36,9 @@ void Solve() {
     }
     // output
     // for0(i, n) {
-    //     std::cout << ans[i] << " ";
+    //     co(a[i]);
     // }
-    // std::cout << "" << std::endl;
+    // col("");
 }
 // -------------------------------------------------
 
@@ -47,6 +49,7 @@ int main() {
 
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
 #if 0
     ll t;
