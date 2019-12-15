@@ -31,17 +31,35 @@ const ll INF = 1e9 + 21;
 ll n;
 ll a[N];
 // ll ans[N];
+void Divide(ll v, ll& m, ll& r) {
+    m = 0;
+    while (v % 2 == 0) {
+        m += 1;
+        v /= 2;
+    }
+    r = v;
+}
 void Solve() {
+    Map map1;
     std::cin >> n;
+    ll m, r;
     for0(i, n) {
         std::cin >> a[i];
+        Divide(a[i], m, r);
+        // DUMP(i, a[i], m, r);
+        map1[r] = std::max(map1[r], m);
+    }
+
+    ll sum = 0;
+    for (auto& kv : map1) {
+        sum += kv.second;
     }
 
     // output
     // for0(i, n) {
     //     co(a[i]);
     // }
-    // col("");
+    col(sum);
 }
 // -------------------------------------------------
 
@@ -54,7 +72,7 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-#if 0
+#if 1
     ll t;
     std::cin >> t;
     for0(i, t) Solve();

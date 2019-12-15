@@ -26,22 +26,58 @@ using Map = std::map<ll, ll>;
 using Hash = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 1e6 + 9;
+const ll N = 2e5 + 9;
 const ll INF = 1e9 + 21;
 ll n;
-ll a[N];
-// ll ans[N];
+std::string s;
+// onetwonetwooneooonetwooo
+// tttttwooooooo 需要去掉t或者o，看数量
+// ooooooneeeee 需要去掉数量少的o或者e
+// tttwoooone 怎么去？需要把所有的o去掉？其实去掉w和n也是可以的，就看o的个数
 void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    Vec vec1;
+    std::cin >> s;
+    std::string::size_type p1 = 0;
+    for (;;) {
+        auto p2 = s.find("twone", p1);
+        if (p2 == s.npos) break;
+        else {
+            s[p2+2] = '.';
+            vec1.push_back(p2+2+1);
+            p1 = p2;
+        }
+    }
+
+    p1 = 0;
+    for (;;) {
+        auto p2 = s.find("two", p1);
+        if (p2 == s.npos) break;
+        else {
+            s[p2+1] = '.';
+            vec1.push_back(p2+1+1);
+            p1 = p2;
+        }
+    }
+
+    p1 = 0;
+    for (;;) {
+        auto p2 = s.find("one", p1);
+        if (p2 == s.npos) break;
+        else {
+            s[p2+1] = '.';
+            vec1.push_back(p2+1+1);
+            p1 = p2;
+        }
     }
 
     // output
-    // for0(i, n) {
-    //     co(a[i]);
-    // }
-    // col("");
+    auto ans = vec1.size();
+    col(ans);
+    for0(i, ans) {
+        co(vec1[i]);
+    }
+    col("");
+    DUMP(s);
 }
 // -------------------------------------------------
 
@@ -54,7 +90,7 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-#if 0
+#if 1
     ll t;
     std::cin >> t;
     for0(i, t) Solve();

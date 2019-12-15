@@ -29,14 +29,39 @@ using Hash = std::unordered_map<ll, ll>;
 const ll N = 1e6 + 9;
 const ll INF = 1e9 + 21;
 ll n;
-ll a[N];
 // ll ans[N];
+Map map1;
+void Init() {
+    forxy(i, 1, 9) {  // 1,2,3
+        int v = 0;
+        forxy(j, 1, 9) {
+            v = 10 * v + i;  // 1,11,111
+            map1[v] = 0;
+        }
+    }
+    // DUMP(map1);
+
+    int sum = 1;
+    for (auto& kv : map1) {
+        kv.second = sum++;
+    }
+    // DUMP(map1);
+}
 void Solve() {
     std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    // if (n == 1e9) {
+    //     col(map1.size());
+    //     return;
+    // }
+
+    auto it = map1.upper_bound(n);
+    // DUMP(n, it->first, it->second);
+    if (it == map1.end()) {
+        col(map1.size());
+        return;
     }
 
+    col(it->second - 1);
     // output
     // for0(i, n) {
     //     co(a[i]);
@@ -54,7 +79,8 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-#if 0
+#if 1
+    Init();
     ll t;
     std::cin >> t;
     for0(i, t) Solve();
