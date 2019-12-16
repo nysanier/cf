@@ -23,14 +23,14 @@ using Vec = std::vector<ll>;
 using Pair = std::pair<ll, ll>;
 using Set = std::set<ll>;
 using Map = std::map<ll, ll>;
-using Hash = std::unordered_map<ll, ll>;
+using Umap = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
 const ll N = 1e6 + 9;
 const ll INF = 1e9 + 21;
 ll n;
 ll a[N];
-// ll ans[N];
+void Init() {}
 void Solve() {
     std::cin >> n;
     for0(i, n) {
@@ -38,9 +38,9 @@ void Solve() {
     }
 
     // output
-    // for0(i, n) {
-    //     co(a[i]);
-    // }
+    // Vec ans(a, a+n);
+    // col(ans.size());
+    // for (auto v : ans) co(v);
     // col("");
 }
 // -------------------------------------------------
@@ -55,10 +55,12 @@ int main() {
     std::cout.tie(nullptr);
 
 #if 0
+    Init();
     ll t;
     std::cin >> t;
     for0(i, t) Solve();
 #else
+    Init();
     Solve();
 #endif
 
