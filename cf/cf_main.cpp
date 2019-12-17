@@ -28,6 +28,7 @@ using Umap = std::unordered_map<ll, ll>;
 // -------------------------------------------------
 const ll N = 1e6 + 9;
 const ll INF = 1e9 + 21;
+const ll MOD = 1e9 + 7;
 ll n;
 ll a[N];
 void Init() {}
