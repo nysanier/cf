@@ -32,40 +32,23 @@ std::string s, c;
 void Init() {}
 void Solve() {
     std::cin >> s >> c;
-    // AB, AB
-    if (s == c) {
-        col("---");
-        return;
-    }
-
-    // AB, ABC
     if (s < c) {
         col(s);
         return;
     }
-
-    ll i = 0, j = 0;
-    while (i < s.size() && j < c.size() && s[i] == c[j]) {
-        ++i;
-        ++j;
-    }
-
-    assert(i < s.size());
-
-    if (j == c.size()) {
-        assert(i > 0);
-        --i;
-        --j;
-    }
-    forxy(x, i+1, s.size()-1) {
-        std::swap(s[i], s[x]);
-        if (s < c) {
-            col(s);
-            return;
+    for0(i, s.size()-1) {
+        forxy(j, i+1, s.size()-1) {
+            if (s[j] >= s[i]) continue;
+            std::swap(s[i], s[j]);
+            if (s < c) {
+                col(s);
+                // DUMP(i,j,s,c);
+                return;
+            }
+            std::swap(s[i], s[j]);
         }
-        std::swap(s[i], s[x]);
     }
-
+ 
     col("---");
 }
 // -------------------------------------------------
