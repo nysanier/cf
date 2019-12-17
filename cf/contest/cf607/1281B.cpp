@@ -53,6 +53,7 @@ void Solve() {
     assert(i < s.size());
 
     if (j == c.size()) {
+        assert(i > 0);
         --i;
         --j;
     }
