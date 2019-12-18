@@ -29,7 +29,8 @@ using Umap = std::unordered_map<ll, ll>;
 const ll N = 60 + 9;
 const ll INF = 1e9 + 21;
 ll r,c;
-std::string s[N];
+// std::string s[N];
+char s[N][N];  // 耗时与std::string无差别，都是171ms
 void Init() {}
 bool RowAllA(int row) {
     for0(i, c)
@@ -56,7 +57,8 @@ void Solve() {
     std::cin >> r >> c;
     for0(i, r) {
         std::cin >> s[i];
-        cntA += std::count(s[i].begin(), s[i].end(), 'A');
+        // cntA += std::count(s[i].begin(), s[i].end(), 'A');
+        cntA += std::count(s[i], s[i]+c, 'A');
     }
     if (cntA == 0) {
         col("MORTAL");
@@ -79,7 +81,7 @@ void Solve() {
         return;
     }
 
-    // inner line
+    // inner row/col
     for1(i, r-2) {
         if (RowAllA(i)) {
             col(2);
