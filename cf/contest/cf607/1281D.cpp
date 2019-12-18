@@ -26,22 +26,81 @@ using Map = std::map<ll, ll>;
 using Umap = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 1e6 + 9;
+const ll N = 60 + 9;
 const ll INF = 1e9 + 21;
-ll n;
-ll a[N];
+ll r,c;
+std::string s[N];
 void Init() {}
+bool RowAllA(int row) {
+    for0(i, c)
+        if (s[row][i] == 'P') return false;
+    return true;
+}
+bool ColAllA(int col) {
+    for0(i, r)
+        if (s[i][col] == 'P') return false;
+    return true;
+}
+bool RowOneA(int row) {
+    for0(i, c)
+        if (s[row][i] == 'A') return true;
+    return false;
+}
+bool ColOneA(int col) {
+    for0(i, r)
+        if (s[i][col] == 'A') return true;
+    return false;
+}
 void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    ll cntA = 0;
+    std::cin >> r >> c;
+    for0(i, r) {
+        std::cin >> s[i];
+        cntA += std::count(s[i].begin(), s[i].end(), 'A');
+    }
+    if (cntA == 0) {
+        col("MORTAL");
+        return;
     }
 
-    // output
-    // Vec ans(a, a+n);
-    // col(ans.size());
-    // for (auto v : ans) co(v);
-    // col("");
+    if (cntA == r * c) {
+        col(0);
+        return;
+    }
+
+    if (RowAllA(0) || RowAllA(r-1) || ColAllA(0) || ColAllA(c-1)) {
+        col(1);
+        return;
+    }
+
+    // corner
+    if (s[0][0]=='A' || s[0][c-1]=='A' || s[r-1][0]=='A' || s[r-1][c-1]=='A') {
+        col(2);
+        return;
+    }
+
+    // inner line
+    for1(i, r-2) {
+        if (RowAllA(i)) {
+            col(2);
+            return;
+        }
+    }
+    for1(i, c-2) {
+        if (ColAllA(i)) {
+            col(2);
+            return;
+        }
+    }
+
+    // edge
+    if (RowOneA(0) || RowOneA(r-1) || ColOneA(0) || ColOneA(c-1)) {
+        col(3);
+        return;
+    }
+
+    // inner
+    col(4);
 }
 // -------------------------------------------------
 
@@ -54,7 +113,7 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-#if 0
+#if 1
     Init();
     ll t;
     std::cin >> t;

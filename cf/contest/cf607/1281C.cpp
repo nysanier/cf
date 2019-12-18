@@ -49,7 +49,7 @@ void Solve() {
             }
             // DUMP(s2, s);
         }
-        ans = (i+1 + (ans-i-1+MOD) * d) % MOD;  // 为什么要 +MOD ？
+        ans = (i+1 + (ans-i-1+MOD) * d) % MOD;  // 因为ans经过了MOD，所以可能比i还要小!!!
         // DUMP(ans);
     }
 
