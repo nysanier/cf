@@ -12,7 +12,7 @@
 #define for0r(i, n) for (auto i = n - 1; i >= 0; --i)
 #define for1r(i, n) for (auto i = n; i >= 1; --i)
 #define forxy(i, x, y) for (auto i = x; i <= y; ++i)
-#define foryx(i, y, x) for (auto i = y; i >= x; --i)
+#define foryx(i, x, y) for (auto i = y; i >= x; --i)
 #define col(e) (std::cout << (e) << std::endl)
 #define co(e) (std::cout << (e) << " ")
 
@@ -26,23 +26,26 @@ using Map = std::map<ll, ll>;
 using Umap = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 1e6 + 9;
-const ll INF = 1e9 + 21;
-const ll MOD = 1e9 + 7;
-ll n;
-ll a[N];
+std::string p, h;
 void Init() {}
 void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    std::cin >> p >> h;
+    if (h.size() < p.size()) {
+        col("NO");
+        return;
     }
 
-    // output
-    // Vec ans(a, a+n);
-    // col(ans.size());
-    // for (auto v : ans) co(v);
-    // col("");
+    std::sort(p.begin(), p.end());
+    for0(i, h.size()-p.size()+1) {
+        auto s = h.substr(i, p.size());
+        std::sort(s.begin(), s.end());
+        if(s == p) {
+            col("YES");
+            return;
+        }
+    }
+
+    col("NO");
 }
 // -------------------------------------------------
 
@@ -55,7 +58,7 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-#if 0
+#if 1
     Init();
     ll t;
     std::cin >> t;

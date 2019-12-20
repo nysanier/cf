@@ -26,23 +26,60 @@ using Map = std::map<ll, ll>;
 using Umap = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 1e6 + 9;
+const ll N = 2e5 + 9;
 const ll INF = 1e9 + 21;
 const ll MOD = 1e9 + 7;
 ll n;
 ll a[N];
+ll b[N];
 void Init() {}
 void Solve() {
     std::cin >> n;
-    for0(i, n) {
+    for1(i, 2 * n) {
         std::cin >> a[i];
     }
+    b[0] = 0;
+    for1(i, n) {
+        if (a[i] == 1) {
+            b[i] = b[i-1] + 1;
+        } else {
+            b[i] = b[i-1] - 1;
+        }
+    }
+    // Vec vec1(b,b+n+1);
+    std::multimap<ll, ll> mapx;  // value, position
+    mapx.insert({0, 2*n+1});
+    b[2*n+1] = 0;
+    foryx(i, 2*n, n+1) {
+        if (a[i] == 2) {
+            b[i] = b[i+1] + 1;
+        } else {
+            b[i] = b[i+1] - 1;
+        }
+        // setx.insert({b[i],i});
+        mapx.insert({b[i],i});
+    }
+    // Vec vec2(b+n+1,b+2*n+2);
+    // DUMP(vec1, vec2);
 
-    // output
-    // Vec ans(a, a+n);
-    // col(ans.size());
-    // for (auto v : ans) co(v);
-    // col("");
+    ll ans = INF;
+    for0r(i, n+1) {
+        auto it = mapx.lower_bound(b[i]);
+        if (it == mapx.end()) continue;
+        if (it->first != b[i]) continue;
+        auto v = it->second;
+        auto it2 = mapx.upper_bound(b[i]);
+        while (it != it2) {
+            if (it->second < v) v = it->second;
+            ++it;
+        }
+        // DUMP(i,v);
+        auto res = v-i-1;
+        if (res < ans) ans = res;
+        continue;
+    }
+
+    col(ans);
 }
 // -------------------------------------------------
 
@@ -55,7 +92,7 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-#if 0
+#if 1
     Init();
     ll t;
     std::cin >> t;

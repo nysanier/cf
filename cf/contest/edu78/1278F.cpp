@@ -12,7 +12,7 @@
 #define for0r(i, n) for (auto i = n - 1; i >= 0; --i)
 #define for1r(i, n) for (auto i = n; i >= 1; --i)
 #define forxy(i, x, y) for (auto i = x; i <= y; ++i)
-#define foryx(i, y, x) for (auto i = y; i >= x; --i)
+#define foryx(i, x, y) for (auto i = y; i >= x; --i)
 #define col(e) (std::cout << (e) << std::endl)
 #define co(e) (std::cout << (e) << " ")
 
