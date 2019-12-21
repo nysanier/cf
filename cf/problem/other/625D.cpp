@@ -89,64 +89,64 @@ namespace solve1 {
 //      1, X+1
 
 namespace solve {
-    char s[N];
-    char ans[N];
-    bool Parse() {
-        auto len = strlen(s);
-        int i = 0;
-        int j = len - 1;
-        while (i < j) {
-            if (s[j] == '9') {
-                if (s[i] == '9') {
-                    ans[j] = '0';
-                    ans[i] = '9';
-                    s[i] = s[j] = 'x';
-                    i += 1;
-                    j -= 1;
-                    continue;
-                } else if (i+1 < j && s[i] == '1' && s[i+1] == '0') {
-                    ans[j] = '0';
-                    ans[i] = '9';
-                    s[j] = 'x';
-                    s[i+1] = '1';
-                    i += 1;
-                    j -= 1;
-                    continue;
-                } else {
-                    return false;
-                }
-            }
+    // char s[N];
+    // char ans[N];
+    // bool Parse() {
+    //     auto len = strlen(s);
+    //     int i = 0;
+    //     int j = len - 1;
+    //     while (i < j) {
+    //         if (s[j] == '9') {
+    //             if (s[i] == '9') {
+    //                 ans[j] = '0';
+    //                 ans[i] = '9';
+    //                 s[i] = s[j] = 'x';
+    //                 i += 1;
+    //                 j -= 1;
+    //                 continue;
+    //             } else if (i+1 < j && s[i] == '1' && s[i+1] == '0') {
+    //                 ans[j] = '0';
+    //                 ans[i] = '9';
+    //                 s[j] = 'x';
+    //                 s[i+1] = '1';
+    //                 i += 1;
+    //                 j -= 1;
+    //                 continue;
+    //             } else {
+    //                 return false;
+    //             }
+    //         }
 
-            if (i+1 < j && s[i] == '1')
-                if (s[i+1] == s[j]+1) {
-                    ans[i] = '9';
-                    ans[j] = ((10 + s[j] - '0') - '9') + '0';
-                    s[j] = 'x';
-                    s[i+1] = '1';
-                    i += 1;
-                    j -= 1;
-                } else if (s[i+1] == s[j]) {
-                    ans[i] = '9';
-                    ans[j] = 
-                }
+    //         if (i+1 < j && s[i] == '1')
+    //             if (s[i+1] == s[j]+1) {
+    //                 ans[i] = '9';
+    //                 ans[j] = ((10 + s[j] - '0') - '9') + '0';
+    //                 s[j] = 'x';
+    //                 s[i+1] = '1';
+    //                 i += 1;
+    //                 j -= 1;
+    //             } else if (s[i+1] == s[j]) {
+    //                 ans[i] = '9';
+    //                 ans[j] = 
+    //             }
 
-            } 
-        }
+    //         } 
+    //     }
 
-        if (i == j) {
-            auto v = s[0]-'0';
-            if (v % 2 != 0)
-                return false;
-            }
-            ans[i] = v / 2;
-        }
+    //     if (i == j) {
+    //         auto v = s[0]-'0';
+    //         if (v % 2 != 0)
+    //             return false;
+    //         }
+    //         ans[i] = v / 2;
+    //     }
 
-        return true;
-    }
-    int Main() {
-        scanf("%s", &s);
+    //     return true;
+    // }
+    // int Main() {
+    //     scanf("%s", &s);
     
-    }
+    // }
 }
 
 int main() {

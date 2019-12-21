@@ -64,38 +64,25 @@ void Check() {
 
 int main() {
     // printf(">\n");
-    scanf("%d", &n);
-    scanf("%s", a);
-    for (int i = 0; i < n; ++i) {
-        switch (a[i]) {
-            case 'L':
-                if (idx > 0) {
-                    idx -= 1;
-                }
-                Check();
-                break;
-            case 'R':
-                idx += 1;
-                Check();
-                break;
-            case '(';
+    // scanf("%d", &n);
+    // scanf("%s", a);
+    // for (int i = 0; i < n; ++i) {
+    //     switch (a[i]) {
+    //         case 'L':
+    //             if (idx > 0) {
+    //                 idx -= 1;
+    //             }
+    //             Check();
+    //             break;
+    //         case 'R':
+    //             idx += 1;
+    //             Check();
+    //             break;
+    //         case '(';
             
-        }
-    }
-    printf("\n");
-
-    // for (;;) {
-    //     scanf("%s", str);
-    //     int k = strlen(str);
-    //     int res = 0;
-    //     auto r = CheckBrackets(k, res);
-    //     if (!r) {
-    //         printf("check failed\n");
-    //     } else {
-    //         printf("ok: %d\n", res);
     //     }
     // }
+    // printf("\n");
 
-    // std::cout << N << std::endl;
     return 0;
 }

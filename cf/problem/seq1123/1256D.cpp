@@ -36,13 +36,13 @@ int q;
 int n, k;
 char s[N];
 std::set<int> set0;
-set::set<int> set1;
+std::set<int> set1;
 
 int main() {
     // printf(">\n");
     scanf("%d", &q);
     while (q--) {
-        Case();
+        // Case();
     }
     
     return 0;
