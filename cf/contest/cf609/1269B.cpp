@@ -22,8 +22,8 @@
 #define co(e) (std::cout << (e) << " ")
 
 // type
-using ll = int32_t;
-// using ll = int64_t;
+// using ll = int32_t;
+using ll = int64_t;
 using Vec = std::vector<ll>;
 using Deq = std::deque<ll>;
 using Lst = std::list<ll>;
