@@ -60,17 +60,19 @@ void Solve() {
     Count(mpa, a);
     Mp mpb;
     Count(mpb, b);
-    ll ans = 0;
+    ll ans = INF;
     for (auto& kvb : mpb) {
         auto d = kvb.first - mpa.begin()->first;
         Mp mp;
         for (auto& kva : mpa) {
-            auto k = (kva.first+d) % m;
+            auto k = (kva.first+d+m) % m;
             mp[k] = kva.second;
         }
         if (mp == mpb) {
-            ans = d;
-            break;
+            auto res = (d+m)%m;
+            if (res < ans) {
+                ans = res;
+            }
         }
     }
 
