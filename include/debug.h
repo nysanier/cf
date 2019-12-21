@@ -1,3 +1,4 @@
+// deprecated: using dump.h instead
 #pragma once
 
 #include <bits/stdc++.h>

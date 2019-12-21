@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 // #include <bits/extc++.h>
 #ifndef ONLINE_JUDGE
-# include <dump.h>
+# include "dump.h"
 #else
 # define DUMP(args...)
 #endif
@@ -43,13 +43,6 @@ void Solve() {
     }
 
     // output
-    for0(i, 5) co(a[i]); col("");
-    for1(i, 5) co(a[i]); col("");
-    forn(i, 2, 5) co(a[i]); col("");
-    for0r(i, 5) co(a[i]); col("");
-    for1r(i, 5) co(a[i]); col("");
-    fornr(i, 2, 5) co(a[i]); col("");
-
     // Vec ans(a, a+n);
     // col(ans.size());
     // for (auto v : ans) co(v);
