@@ -5,7 +5,3 @@ target_link_libraries(cf_main)
 
 add_subdirectory(problem)
 add_subdirectory(contest)
-
-add_subdirectory(dp1029)
-add_subdirectory(dp1105)
-add_subdirectory(seq1123)
