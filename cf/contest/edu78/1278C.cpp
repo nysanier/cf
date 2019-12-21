@@ -12,7 +12,7 @@
 #define for0r(i, n) for (auto i = n - 1; i >= 0; --i)
 #define for1r(i, n) for (auto i = n; i >= 1; --i)
 #define forxy(i, x, y) for (auto i = x; i <= y; ++i)
-#define foryx(i, y, x) for (auto i = y; i >= x; --i)
+#define foryx(i, x, y) for (auto i = y; i >= x; --i)
 #define col(e) (std::cout << (e) << std::endl)
 #define co(e) (std::cout << (e) << " ")
 
@@ -50,7 +50,7 @@ void Solve() {
     std::multimap<ll, ll> mapx;  // value, position
     mapx.insert({0, 2*n+1});
     b[2*n+1] = 0;
-    foryx(i, 2*n, n+1) {
+    foryx(i, n+1, 2*n) {
         if (a[i] == 2) {
             b[i] = b[i+1] + 1;
         } else {
