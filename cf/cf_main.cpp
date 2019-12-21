@@ -4,6 +4,7 @@
 # include "dump.h"
 #else
 # define DUMP(args...)
+# define LINE(e)
 #endif
 
 // abbr
