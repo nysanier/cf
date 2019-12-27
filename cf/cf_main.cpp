@@ -22,8 +22,8 @@
 #define co(e) (std::cout << (e) << " ")
 
 // type
-using ll = int32_t;
-// using ll = int64_t;
+// using ll = int32_t;
+using ll = int64_t;
 using Vec = std::vector<ll>;
 using Deq = std::deque<ll>;
 using Lst = std::list<ll>;
@@ -36,7 +36,7 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 1e6 + 9;
+const ll N = 2e5 + 9;
 const ll INF = 1e9 + 21;
 const ll MOD = 1e9 + 7;
 ll n;
@@ -65,15 +65,10 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-#if 0
     Init();
-    ll t;
-    std::cin >> t;
+    ll t = 1;
+    // std::cin >> t;
     for0(i, t) Solve();
-#else
-    Init();
-    Solve();
-#endif
 
     return 0;
 }
