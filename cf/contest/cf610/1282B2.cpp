@@ -22,8 +22,8 @@
 #define co(e) (std::cout << (e) << " ")
 
 // type
-using ll = int32_t;
-// using ll = int64_t;
+// using ll = int32_t;
+using ll = int64_t;
 using Vec = std::vector<ll>;
 using Deq = std::deque<ll>;
 using Lst = std::list<ll>;
@@ -36,23 +36,70 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 1e6 + 9;
+// 可以暴力出来？
+const ll N = 2e5 + 9;
 const ll INF = 1e9 + 21;
 const ll MOD = 1e9 + 7;
-ll n;
+ll n, p, k;
 ll a[N];
+ll b[N];
 void Init() {}
+// buy alone
+ll Cal1(ll x, ll px) {
+    if (px >= b[x]) {
+        px -= b[x];
+        return x;
+    }
+    assert(px >= b[0]);
+
+    ll l = 0;  // >= px
+    ll r = x;  // < px
+    while (l < r) {
+        ll h = (l+r)/2;
+        if (px >= b[h]) {
+            l = h + 1;
+        } else {
+            r = h;
+        }
+    }
+    px -= b[l-1];
+    return l-1;
+}
+// with bonus
+ll Cal2(ll x, ll& px) {
+    ll r = 0;
+    forxyd(i, x+k, n, k) {
+        if (px >= a[i]) {
+            px -= a[i];
+            r += k;
+        }
+    }
+    return r;
+}
 void Solve() {
-    std::cin >> n;
-    for0(i, n) {
+    std::cin >> n >> p >> k;
+    for1(i, n) {
         std::cin >> a[i];
     }
+    std::sort(a+1, a+1+n);
+    b[0] = 0;
+    for1(i, k-1) {
+        b[i] = b[i-1] + a[i];
+    }
 
-    // output
-    // Vec ans(a, a+n);
-    // col(ans.size());
-    // for (auto v : ans) co(v);
-    // col("");
+    DUMP(Vec(b,b+k));
+    ll ans = 0;
+    for0(i, k) {
+        DUMP("---", i);
+        auto px = p;
+        auto r = Cal2(i, px);
+        DUMP(px, r);
+        r += Cal1(i, px);
+        DUMP(r, px);
+        ans = std::max(ans, r);
+    }
+
+    col(ans);
 }
 // -------------------------------------------------
 
@@ -65,7 +112,7 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-#if 0
+#if 1
     Init();
     ll t;
     std::cin >> t;
