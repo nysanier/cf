@@ -36,34 +36,50 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-// 可以暴力出来？
+// O(k*logk*(n/k)) ~= O(klogk)
 const ll N = 2e5 + 9;
 const ll INF = 1e9 + 21;
 const ll MOD = 1e9 + 7;
 ll n, p, k;
 ll a[N];
 ll b[N];
+Mmp mmp;
 void Init() {}
 // buy alone
-ll Cal1(ll x, ll px) {
-    if (px >= b[x]) {
-        px -= b[x];
-        return x;
-    }
-    assert(px >= b[0]);
+// ll Cal1(ll x, ll px) {
+//     if (px >= b[x]) {
+//         px -= b[x];
+//         return x;
+//     }
+//     assert(px >= b[0]);
 
-    ll l = 0;  // >= px
-    ll r = x;  // < px
-    while (l < r) {
-        ll h = (l+r)/2;
-        if (px >= b[h]) {
-            l = h + 1;
-        } else {
-            r = h;
-        }
+//     ll l = 0;  // >= px
+//     ll r = x;  // < px
+//     while (l < r) {
+//         ll h = (l+r)/2;
+//         if (px >= b[h]) {
+//             l = h + 1;
+//         } else {
+//             r = h;
+//         }
+//     }
+//     px -= b[l-1];
+//     return l-1;
+// }
+ll Cal1(ll x, ll px) {
+    auto f = mmp.begin();
+    auto l = --mmp.end();
+    if (px >= l->first) {
+        return l->second;
     }
-    px -= b[l-1];
-    return l-1;
+    assert(px >= f->first);
+    auto it = mmp.lower_bound(px);
+    DUMP("lower_bound", *it);
+    if (px < it->first) {
+        --it;
+    }
+
+    return it->second;
 }
 // with bonus
 ll Cal2(ll x, ll& px) {
@@ -86,10 +102,13 @@ void Solve() {
     for1(i, k-1) {
         b[i] = b[i-1] + a[i];
     }
-
     DUMP(Vec(b,b+k));
+
+    mmp.clear();
     ll ans = 0;
     for0(i, k) {
+        mmp.insert({b[i],i});
+        DUMP(mmp);
         DUMP("---", i);
         auto px = p;
         auto r = Cal2(i, px);
@@ -112,15 +131,10 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-#if 1
     Init();
-    ll t;
+    ll t = 1;
     std::cin >> t;
     for0(i, t) Solve();
-#else
-    Init();
-    Solve();
-#endif
 
     return 0;
 }
