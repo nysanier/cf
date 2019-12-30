@@ -20,8 +20,9 @@ add_compile_options(-Wall)
 include_directories(SYSTEM include)  # for self/bits/stdc++.h, common c/c++ headers
 add_compile_options(-Wno-sign-compare)
 
-add_subdirectory(cf)
-add_subdirectory(at)
+add_subdirectory(cf)  # codeforces
+add_subdirectory(at)  # atcoder
 add_subdirectory(test)
 add_subdirectory(ut)
-add_subdirectory(nowcoder)
+add_subdirectory(nc)  # nowcoder
+add_subdirectory(lc)  # leetcode
