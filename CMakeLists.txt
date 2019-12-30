@@ -18,7 +18,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_compile_options(-Wall)
 include_directories(SYSTEM include)  # for self/bits/stdc++.h, common c/c++ headers
-add_compile_options(-Wno-sign-compare)
+add_compile_options(-Wno-sign-compare)  # int和size_t比较
+add_compile_options(-Wno-char-subscripts)  # char作为数组索引
 
 add_subdirectory(cf)  # codeforces
 add_subdirectory(at)  # atcoder
