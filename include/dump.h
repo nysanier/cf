@@ -3,9 +3,10 @@
 #include <bits/stdc++.h>
 
 namespace std {
-    // basic.../string/char
-    string to_string(const string& str) { return "\"" + str + "\""; }
+    // basic.../bool/char/string
+    string to_string(bool b) { return b ? "true" : "false"; };
     string to_string(char ch) { return "'" + string(1, ch) + "'"; }
+    string to_string(const string& str) { return "\"" + str + "\""; }
     // pair/vector
     template <typename K, typename V>
     string to_string(const pair<K, V>& p) {
