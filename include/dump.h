@@ -15,7 +15,7 @@ namespace std {
     template <typename T>
     string to_string(const vector<T>& vec) {
         string res = "{";
-        for (auto& v : vec) res += to_string(v) + ",";
+        for (const auto& v : vec) res += to_string(v) + ",";
         if (res == "{") res += "}";
         else *--res.end() = '}';  // replace the last ',' with '}'
         return res;
