@@ -78,20 +78,20 @@ namespace fn {
         ToVec(out, args...);
     }
 
-    void Split(const std::string& str, const std::string& sep, std::vector<std::string>& vec) {
+    void Split(std::vector<std::string>& out, const std::string& str, const std::string& sep) {
         std::string::size_type p = 0;
         while (p < str.size()) {
             auto p2 = str.find(sep, p);
             if (p2 == str.npos)
                 p2 = str.size();
-            vec.push_back(str.substr(p, p2-p));
+            out.push_back(str.substr(p, p2-p));
             p = p2 + sep.size();
         }
     }
 
     std::string Merge(const std::string& s1, const std::vector<std::string>& v2) {
         std::vector<std::string> v1;
-        Split(s1, ",", v1);
+        Split(v1, s1, ",");
         // std::cerr << "s1: " << s1 << std::endl;
         // std::cerr << "v1: " << std::to_string(v1) << std::endl;
         // std::cerr << "v2: " << std::to_string(v2) << std::endl;
