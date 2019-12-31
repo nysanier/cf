@@ -56,7 +56,8 @@ void Solve() {
     using namespace std;
 
     vector<string> in;
-    lc::Readin(in);
+    std::string out;
+    lc::Read(in, out);
 
     string s; int maxLetters; int minSize; int maxSize;
     lc::ParseArg(in[0], s);
@@ -67,7 +68,7 @@ void Solve() {
 
     Solution sol;
     auto r = sol.maxFreq(s, maxLetters, minSize, maxSize);
-    DUMP(r);
+    DUMP(out, r);
 }
 // -------------------------------------------------
 

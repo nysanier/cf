@@ -20,7 +20,7 @@ void Parse(std::vector<std::string>& out, const std::string& si) {
         out.push_back(val);
     }
 }
-void Readin(std::vector<std::string>& in) {
+void Read(std::vector<std::string>& in, std::string& out) {
     std::string si, so;
     const std::string li("输入：");
     const std::string lo("输出：");
@@ -36,7 +36,8 @@ void Readin(std::vector<std::string>& in) {
     }
     // DUMP(si);
     // DUMP(so);
-    Parse(in, si.substr(li.size()));
+    Parse(in, si.substr(li.size()));  // remove 输入：
+    out = so.substr(lo.size());  // remove 输出：
 }
 
 string rq(const std::string& s) { return s.substr(1,s.size()-2); }

@@ -67,7 +67,8 @@ void Solve() {
     using namespace std;
 
     vector<string> in;
-    lc::Readin(in);
+    std::string out;
+    lc::Read(in, out);
 
     vector<int> status; vector<int> candies; vector<vector<int>> keys; vector<vector<int>> containedBoxes; vector<int> initialBoxes;
     lc::ParseArg(in[0], status);
@@ -79,7 +80,7 @@ void Solve() {
 
     Solution sol;
     auto r = sol.maxCandies(status, candies, keys, containedBoxes, initialBoxes);
-    DUMP(r);
+    DUMP(out, r);
 }
 
 // -------------------------------------------------

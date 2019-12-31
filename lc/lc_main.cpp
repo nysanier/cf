@@ -8,24 +8,12 @@ using namespace std;
 
 // # define DUMP(args...)
 class Solution {
-    // true: even
-    bool check(int n) {
-        int s = 0;
-        while (n > 0) {
-            s += 1;
-            n /= 10;
-        }
-        return s % 2 == 0;
-    }
 public:
-    int findNumbers(vector<int>& nums) {
-        int r = 0;
-        for (auto n : nums) {
-            if (check(n)) r += 1;
-        }
-        return r;
+    bool func(vector<int>& arg0, int arg1, int arg2, int arg3) {
+        return true;
     }
 };
+
 }
 
 void Init() {}
@@ -36,13 +24,17 @@ void Solve() {
     std::string out;
     lc::Read(in, out);
 
-    vector<int> nums;
-    lc::ParseArg(in[0], nums);
-    DUMP(nums);
+    vector<int> arg0; int arg1, arg2, arg3;
+    lc::ParseArg(in[0], arg0);
+    lc::ParseArg(in[1], arg1);
+    lc::ParseArg(in[2], arg2);
+    lc::ParseArg(in[3], arg3);
+    DUMP(arg0, arg1, arg2, arg3);
 
     Solution sol;
-    auto r = sol.findNumbers(nums);
+    auto r = sol.func(arg0, arg1, arg2, arg3);
     DUMP(out, r);
+    assert(out == to_string(r));
 }
 // -------------------------------------------------
 

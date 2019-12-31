@@ -45,7 +45,8 @@ void Solve() {
     using namespace std;
 
     vector<string> in;
-    lc::Readin(in);
+    std::string out;
+    lc::Read(in, out);
 
     vector<int> nums; int k;
     lc::ParseArg(in[0], nums);
@@ -54,7 +55,7 @@ void Solve() {
 
     Solution sol;
     auto r = sol.isPossibleDivide(nums, k);
-    DUMP(r);
+    DUMP(out, r);
 }
 // -------------------------------------------------
 
