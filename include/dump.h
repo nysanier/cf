@@ -106,11 +106,11 @@ namespace fn {
 // interface
 #define DUMP(args...) \
     do { \
-        const std::string s1 = #args; \
-        std::vector<std::string> v2; \
-        fn::ToVec(v2, ##args); \
-        auto res = fn::Merge(s1, v2); \
-        std::cerr << "***DUMP*** " << res << std::endl; \
+        const std::string _s1 = #args; \
+        std::vector<std::string> _v2; \
+        fn::ToVec(_v2, ##args); \
+        auto _res = fn::Merge(_s1, _v2); \
+        std::cerr << "***DUMP*** " << _res << std::endl; \
      } while (0)
 
 #define LINE(e) (std::cerr << "---LINE--- " << (e) << std::endl)
