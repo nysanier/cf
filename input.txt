@@ -1,19 +1,12 @@
 1
 
-3 SEIS CATORCE SETENTA
-NOVENTA
+aababcaab 2 3 4
 
-2 SEND MORE
-MONEY
+abcde 2 3 3
 
-2 AB BC
-CD
+aabcabcab 2 2 3
 
-2 LEET CODE
-POINT
-
-3 THIS IS TOO
-FUNNY
-
-3 SIX SEVEN SEVEN
-TWENTY
+aababcaab
+2
+3
+4

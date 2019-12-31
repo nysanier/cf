@@ -7,6 +7,7 @@ namespace std {
     string to_string(bool b) { return b ? "true" : "false"; };
     string to_string(char ch) { return "'" + string(1, ch) + "'"; }
     string to_string(const string& str) { return "\"" + str + "\""; }
+    string to_string(const char* const sz) { return to_string(std::string(sz)); }
     // pair/vector
     template <typename K, typename V>
     string to_string(const pair<K, V>& p) {
