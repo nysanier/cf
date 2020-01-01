@@ -24,6 +24,5 @@ add_compile_options(-Wno-char-subscripts)  # char作为数组索引
 add_subdirectory(cf)  # codeforces
 add_subdirectory(at)  # atcoder
 add_subdirectory(test)
-add_subdirectory(ut)
 add_subdirectory(nc)  # nowcoder
 add_subdirectory(lc)  # leetcode

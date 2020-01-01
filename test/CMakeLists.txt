@@ -7,6 +7,8 @@ endif()
 
 # set(CMAKE_BUILD_TYPE "Release")  # 无法提升mac下thread切换效率
 
+add_subdirectory(algo)
+
 add_executable(test_cpu test_cpu.cpp)
 target_link_libraries(test_cpu boost_timer)
 target_compile_options(test_cpu PRIVATE -O2 -Wall)
