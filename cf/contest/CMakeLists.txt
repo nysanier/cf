@@ -20,3 +20,5 @@ add_subdirectory(edu78)
 add_subdirectory(edu79)
 
 add_subdirectory(nerc2019)
+
+add_subdirectory(hello2020)
