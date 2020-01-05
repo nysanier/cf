@@ -3,6 +3,10 @@
 #include <bits/stdc++.h>
 #include "dump.h"
 
+// 还可以有更好的方法来解析数据, 根据'['/']'/'"'出现的个数位置即可知道当前那个vec需要数据
+// 在出现之前，先移除多余的空格，即不在""中的空格，方便处理
+// 总体方法: 状态机
+// 在处理的是否，如果引号或者括号不配对，那么直接assert
 namespace lc{
 using namespace std;
 
