@@ -73,7 +73,7 @@ void ParseArg(const std::string& in, vector<string>& val) {
 }
 void ParseArg(const std::string& in, vector<vector<int>>& val) {
     vector<string> out;
-    fn::Split(out, rb(in), "],[");  // remove bracket [[1,2],[3],[]] -> [1,2],[3],[]
+    fn::Split(out, rb(in), "],[");  // remove bracket [[1,2],[3],[]] -> [1,2 / 3 / _]
     out[0] = out[0].substr(1);  // first: [1,2 -> 1,2;  if only one element: [1,2] -> 1,2]
     auto& last = out[out.size()-1];  // last: 1,2] -> 1,2
     last.resize(last.size()-1);  // 1,2] -> 1,2
@@ -87,6 +87,23 @@ void ParseArg(const std::string& in, vector<vector<int>>& val) {
         val.push_back(val2);
     }
     // DUMP("vecvec", in, val);
+}
+void ParseArg(const std::string& in, vector<vector<string>>& val) {
+    vector<string> out;
+    fn::Split(out, rb(in), "],[");  // remove bracket [["A","B"],["C"],[]] -> ["A","B" / "C" / _]
+    out[0] = out[0].substr(1);  // first: ["A","B" -> "A","B";  if only one element: "A","B" -> "A","B"]
+    auto& last = out[out.size()-1];  // last: "A","B"] -> "A","B"
+    last.resize(last.size()-1);  // "A","B"] -> "A","B"
+    val.clear();
+    for (auto v : out) {
+        vector<string> val2;
+        vector<string> out2;
+        fn::Split(out2, v, ",");
+        for (auto v2 : out2)
+            val2.push_back(rq(v2));
+        val.push_back(val2);
+    }
+    // DUMP("vecvecstr", in, val);
 }
 template <typename... Args>
 void ParseIn(const vector<string>& in, int idx, Args... args) {}
