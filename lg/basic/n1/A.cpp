@@ -36,17 +36,29 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-const ll INF = 1e9 + 21;
-const ll MOD = 1e9 + 7;
+const ll N = 1e4 + 9;
+struct S {
+    ll a, b, g, k;
+};
 ll n;
-ll a[N];
+S ss[N];
+ll x, y;
 void Init() {}
 void Solve() {
     std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    for1(i, n) {
+        auto& s = ss[i];
+        std::cin >> s.a >> s.b >> s.g >> s.k;
     }
+    std::cin >> x >> y;
+    for1r(i, n) {
+        auto& s = ss[i];
+        if (x>=s.a && x<=s.a+s.g && y>=s.b && y<=s.b+s.k) {
+            col(i);
+            return;
+        }
+    }
+    col(-1);
 }
 // -------------------------------------------------
 

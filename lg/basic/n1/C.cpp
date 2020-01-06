@@ -36,17 +36,33 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-const ll INF = 1e9 + 21;
-const ll MOD = 1e9 + 7;
-ll n;
-ll a[N];
+ll m, n;
+ll cnt = 0;
+Mp words;  // words -> seq
+std::map<ll, Mp::iterator> st;  // seq -> it
 void Init() {}
 void Solve() {
-    std::cin >> n;
+    std::cin >> m >> n;
+    ll a;
     for0(i, n) {
-        std::cin >> a[i];
+        std::cin >> a;
+        auto it = words.find(a);
+        if (it != words.end()) { // found
+            continue;
+        }
+        if (words.size() >= m) {  // remove old one
+            auto kv = *st.begin();
+            st.erase(st.begin());
+            words.erase(kv.second);
+        }
+        // insert new one
+        words[a] = cnt;
+        it = words.find(a);
+        st.insert({cnt, it});
+        cnt += 1;
     }
+
+    col(cnt);
 }
 // -------------------------------------------------
 
