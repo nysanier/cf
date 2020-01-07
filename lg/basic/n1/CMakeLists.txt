@@ -8,6 +8,10 @@ add_executable(lg_basic_n1_D D.cpp)
 add_executable(lg_basic_n1_E E.cpp)
 add_executable(lg_basic_n1_F F.cpp)
 
+# 简单的模拟
+# 关卡2-1， 6道题 已通过
+# 任务说明：开始普及组的训练！所谓模拟，就是直接根据题意编写，思维难度简单。
+
 # P1003 铺地毯
 # P1067 多项式输出
 # P1540 机器翻译
