@@ -8,7 +8,7 @@ using namespace std;
 
 // # define DUMP(args...)
 const int N = 40 + 9;
-int vis[N][N];
+int vis[N][N][N*N];  // 每个位置是有状态的，不同状态间需要独立的vis而不能共享
 const int dir[4][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 class Solution {
     struct S {
@@ -29,7 +29,7 @@ public:
         n = grid[0].size();
         std::queue<S> q;
         q.push({0,0,k,0});
-        vis[0][0] = 1;
+        vis[0][0][k] = 1;
         while (!q.empty()) {
             auto t = q.front(); q.pop();
             if (t.r == m-1 && t.c == n-1) return t.d;
@@ -40,8 +40,8 @@ public:
                 auto nk = t.k - (grid[nr][nc]?1:0);
                 auto nd = t.d + 1;
                 if (nk < 0) continue;
-                if (!vis[nr][nc]) {
-                    vis[nr][nc] = 1;
+                if (!vis[nr][nc][nk]) {
+                    vis[nr][nc][nk] = 1;
                     q.push({nr,nc,nk,nd});
                 }
             }

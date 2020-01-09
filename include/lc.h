@@ -14,6 +14,8 @@ void Parse(std::vector<std::string>& out, const std::string& si) {
     out.clear();
     std::istringstream strin(si);
     std::string key, op, val;
+    // 这里认定每个key/value中间都是没有空格的！！
+    // 预先去除所有空格也是危险的，比如" ab c"这个字符串中会有空格，因此不能不看上下文直接去除
     while (strin >> key >> op >> val) {
         if (op != "=") {
             DUMP("invalid op", op);
