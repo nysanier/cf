@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 12-31
-add_executable(lc_168_A xA.cpp)
-add_executable(lc_168_B xB.cpp)
-add_executable(lc_168_C xC.cpp)
-add_executable(lc_168_D xD.cpp)
+add_executable(lc_168_A lcA.cpp)
+add_executable(lc_168_B lcB.cpp)
+add_executable(lc_168_C lcC.cpp)
+add_executable(lc_168_D lcD.cpp)
 
 # 题目列表得分 1295-1298
 # 统计位数为偶数的数字3

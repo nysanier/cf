@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 1-8
-add_executable(lc_167_A xA.cpp)
-add_executable(lc_167_B xB.cpp)
-add_executable(lc_167_C xC.cpp)
-add_executable(lc_167_D xD.cpp)
+add_executable(lc_167_A lcA.cpp)
+add_executable(lc_167_B lcB.cpp)
+add_executable(lc_167_C lcC.cpp)
+add_executable(lc_167_D lcD.cpp)
 
 # 题目列表得分 1290-1293
 # 二进制链表转整数3

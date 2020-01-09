@@ -9,4 +9,4 @@ add_subdirectory(169)
 add_subdirectory(170)
 
 # biweekly
-add_subdirectory(lc16d)
+add_subdirectory(b16)
