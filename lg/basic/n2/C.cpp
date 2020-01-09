@@ -23,7 +23,7 @@
 
 // type
 // using ll = int32_t;
-using ll = int64_t;
+using ll = int;
 using Vec = std::vector<ll>;
 using Deq = std::deque<ll>;
 using Lst = std::list<ll>;
@@ -36,15 +36,68 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-ll n;
-ll a[N];
+const ll N = 25*2500 + 9;
+ll a;
+ll b;
 void Init() {}
-void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+bool Check(ll x) {
+    if (a < x && b < x) return false;
+    if (a == x && b <= x-2) {
+        printf("%d:%d\n", a, b);
+        a = 0;
+        b = 0;
+        return true;
     }
+    if (a <= x-2 && b == x) {
+        printf("%d:%d\n", a, b);
+        a = 0;
+        b = 0;
+        return true;
+    }
+    if (a >= b+2 || b >= a+2) {
+        printf("%d:%d\n", a, b);
+        a = 0;
+        b = 0;
+        return true;
+    }
+    return false;
+}
+bool Check11() {
+    return Check(11);
+}
+bool Check21() {
+    return Check(21);
+}
+void Solve() {
+    std::string all;
+    std::string str;
+    while (std::cin >> str) {
+        all.append(str);
+    }
+
+    // 11
+    a = 0;
+    b = 0;
+    for (auto c : all) {
+        if (c == 'E') break;
+        if (c == 'W') a += 1;
+        else b += 1;
+        Check11();
+    }
+    // if (a != 0 || b != 0)
+        printf("%d:%d\n", a, b);
+    puts("");
+    // 21
+    a = 0;
+    b = 0;
+    for (auto c : all) {
+        if (c == 'E') break;
+        if (c == 'W') a += 1;
+        else b += 1;
+        Check21();
+    }
+    // if (a != 0 || b != 0)
+        printf("%d:%d\n", a, b);
 }
 // -------------------------------------------------
 
