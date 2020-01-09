@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 1-4
-add_executable(lg_1426 1426.cpp)
-add_executable(lg_1464 1464.cpp)
-add_executable(lg_1014 1014.cpp)
-add_executable(lg_1022 1022.cpp)
-add_executable(lg_1307 1307.cpp)
+add_executable(lg_newbie_n8_A lg_A.cpp)
+add_executable(lg_newbie_n8_B lg_B.cpp)
+add_executable(lg_newbie_n8_C lg_C.cpp)
+add_executable(lg_newbie_n8_D lg_D.cpp)
+add_executable(lg_newbie_n8_E lg_E.cpp)
 
 # BOSS战-入门综合练习2
 # 关卡1-8， 5道题 已通过
