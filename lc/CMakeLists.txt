@@ -5,7 +5,7 @@ add_executable(lc_main lc_main.cpp)
 # weekly
 add_subdirectory(167)
 add_subdirectory(168)
-add_subdirectory(lc169)
+add_subdirectory(169)
 add_subdirectory(lc170)
 
 # biweekly
