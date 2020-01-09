@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 1-3
-add_executable(lg_1028 1028.cpp)
-add_executable(lg_1036 1036.cpp)
-add_executable(lg_1149 1149.cpp)
-add_executable(lg_1217 1217.cpp)
+add_executable(lg_newbie_n6_A lg_A.cpp)
+add_executable(lg_newbie_n6_B lg_A.cpp)
+add_executable(lg_newbie_n6_C lg_A.cpp)
+add_executable(lg_newbie_n6_D lg_A.cpp)
 
 # 过程函数与递归
 # 关卡1-6， 4道题 已通过
