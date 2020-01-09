@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 12-30
-add_executable(lc_170_A lcA.cpp)
-add_executable(lc_170_B lcB.cpp)
-add_executable(lc_170_C lcC.cpp)
-add_executable(lc_170_D lcD.cpp)
+add_executable(lc_170_A lc_A.cpp)
+add_executable(lc_170_B lc_B.cpp)
+add_executable(lc_170_C lc_C.cpp)
+add_executable(lc_170_D lc_D.cpp)
 
 # 题目列表得分 1309-1312
 # 解码字母到整数映射3

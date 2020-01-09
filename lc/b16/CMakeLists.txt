@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 12-31
-add_executable(lc_b16_A lcA.cpp)
-add_executable(lc_b16_B lcB.cpp)
-add_executable(lc_b16_C lcC.cpp)
-add_executable(lc_b16_D lcD.cpp)
+add_executable(lc_b16_A lc_A.cpp)
+add_executable(lc_b16_B lc_B.cpp)
+add_executable(lc_b16_C lc_C.cpp)
+add_executable(lc_b16_D lc_D.cpp)
 
 # 题目列表得分 1302-1305
 # 将每个元素替换为右侧最大元素3
