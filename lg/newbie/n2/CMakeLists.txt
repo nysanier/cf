@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 1-1
-add_executable(lg_1422 1422.cpp)
-add_executable(lg_1085 1085.cpp)
-add_executable(lg_1089 1089.cpp)
-add_executable(lg_1909 1909.cpp)
+add_executable(lg_newbie_n2_A lg_A.cpp)
+add_executable(lg_newbie_n2_B lg_B.cpp)
+add_executable(lg_newbie_n2_C lg_C.cpp)
+add_executable(lg_newbie_n2_D lg_D.cpp)
 
 # 顺序与分支
 # 关卡1-2， 4道题 已通过

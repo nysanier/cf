@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 1-1
-add_executable(lg_1000 1000.cpp)
-add_executable(lg_1001 1001.cpp)
-add_executable(lg_1421 1421.cpp)
-add_executable(lg_1425 1425.cpp)
+add_executable(lg_newbie_n1_A lg_A.cpp)
+add_executable(lg_newbie_n1_B lg_B.cpp)
+add_executable(lg_newbie_n1_C lg_C.cpp)
+add_executable(lg_newbie_n1_D lg_D.cpp)
 
 # 洛谷的第一个任务
 # 关卡1-1， 4道题 已通过
