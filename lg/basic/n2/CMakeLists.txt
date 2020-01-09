@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 1-7
-add_executable(lg_basic_n2_A A.cpp)
-add_executable(lg_basic_n2_B B.cpp)
-add_executable(lg_basic_n2_C C.cpp)
-add_executable(lg_basic_n2_D D.cpp)
-add_executable(lg_basic_n2_E E.cpp)
-add_executable(lg_basic_n2_F F.cpp)
+add_executable(lg_basic_n2_A lg_A.cpp)
+add_executable(lg_basic_n2_B lg_B.cpp)
+add_executable(lg_basic_n2_C lg_C.cpp)
+add_executable(lg_basic_n2_D lg_D.cpp)
+add_executable(lg_basic_n2_E lg_E.cpp)
+add_executable(lg_basic_n2_F lg_F.cpp)
 
 # 交叉模拟
 # 关卡2-2， 6道题 可挑战

@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 1-6
-add_executable(lg_basic_n1_A A.cpp)
-add_executable(lg_basic_n1_B B.cpp)
-add_executable(lg_basic_n1_C C.cpp)
-add_executable(lg_basic_n1_D D.cpp)
-add_executable(lg_basic_n1_E E.cpp)
-add_executable(lg_basic_n1_F F.cpp)
+add_executable(lg_basic_n1_A lg_A.cpp)
+add_executable(lg_basic_n1_B lg_B.cpp)
+add_executable(lg_basic_n1_C lg_C.cpp)
+add_executable(lg_basic_n1_D lg_D.cpp)
+add_executable(lg_basic_n1_E lg_E.cpp)
+add_executable(lg_basic_n1_F lg_F.cpp)
 
 # 简单的模拟
 # 关卡2-1， 6道题 已通过

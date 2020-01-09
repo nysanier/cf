@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
 
 # 1-7
-add_executable(lg_basic_n3_A A.cpp)
-add_executable(lg_basic_n3_B B.cpp)
-add_executable(lg_basic_n3_C C.cpp)
-add_executable(lg_basic_n3_D D.cpp)
+add_executable(lg_basic_n3_A lg_A.cpp)
+add_executable(lg_basic_n3_B lg_B.cpp)
+add_executable(lg_basic_n3_C lg_C.cpp)
+add_executable(lg_basic_n3_D lg_D.cpp)
 
 # 排序
 # 关卡2-3， 4道题 可挑战
