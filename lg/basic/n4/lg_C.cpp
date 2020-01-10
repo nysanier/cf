@@ -36,14 +36,32 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
+const ll N = 300 + 9;
+struct S {
+    ll yu;
+    ll shu, wai;
+    ll zong;
+    ll id;
+    bool operator<(const S& rhs) const {
+        return std::pair<ll, Pr>{-zong, {-yu, id}} < std::pair<ll, Pr>{-rhs.zong, {-rhs.yu, rhs.id}};
+    }
+    void Read(ll i) {
+        std::cin >> yu >> shu >> wai;
+        zong = yu + shu + wai;
+        id = i;
+    }
+};
 ll n;
-ll a[N];
+S s[N];
 void Init() {}
 void Solve() {
     std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    for1(i, n) {
+        s[i].Read(i);
+    }
+    std::sort(s+1, s+1+n);
+    for1(i, 5) {
+        co(s[i].id); col(s[i].zong);
     }
 }
 // -------------------------------------------------

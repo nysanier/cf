@@ -36,15 +36,66 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-ll n;
-ll a[N];
+const ll N = 1e5 + 9;
+ll n, r, q;
+ll w[N*2];  // 实力
+// Pr pr[N*2];  // -s -> id
+ll s[N*2];  // 分数
+ll id[N*2];  // id
+ll win[N], wi;
+ll lose[N], li;
 void Init() {}
 void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    std::cin >> n >> r >> q;
+    for1(i, 2*n) {
+        std::cin >> s[i];
+        id[i] = i;
     }
+    for1(i, 2*n) std::cin >> w[i];
+    // std::sort(pr+1, pr+1+2*n);
+    std::sort(id+1, id+1+2*n, [](ll id1, ll id2){
+        if (s[id1] > s[id2]) return true;
+        if (s[id1] == s[id2] && id1 < id2) return true;
+        return false;
+    });
+    for1(i, r) {
+        Vec vec{id+1, id+1+2*n};
+        DUMP(vec);
+        wi = 0;
+        li = 0;
+        forxyd(i, 1, 2*n, 2) {
+            // win/lose都是有序的，进行归并即可
+            auto id1 = id[i];
+            auto id2 = id[i+1];
+            if (w[id1] > w[id2]) {
+                s[id1] += 1;
+                win[wi++] = id1;
+                lose[li++] = id2;
+            } else {
+                s[id2] += 1;
+                win[wi++] = id2;
+                lose[li++] = id1;
+            }
+        }
+        // 归并排序，3个while!!
+        ll a=0, b=0, c=1;
+        while (a<n && b<n) {
+            auto id1 = win[a];
+            auto id2 = lose[b];
+            if ((s[id1] > s[id2]) || (s[id1]==s[id2] && id1<id2)) {
+                id[c++] = win[a++];
+            } else {
+                id[c++] = lose[b++];
+            }
+        }
+        while (a < n)
+            id[c++] = win[a++];
+        while (b < n)
+            id[c++] = lose[b++];
+        // std::sort(pr+1, pr+1+2*n);
+    }
+    auto ans = id[q];
+    col(ans);
 }
 // -------------------------------------------------
 
