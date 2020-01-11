@@ -37,14 +37,67 @@ using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
 const ll N = 2e5 + 9;
-ll n;
-ll a[N];
+std::string str;
+ll p1, p2, p3;
 void Init() {}
-void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+// 小写字母处理
+std::string Calc1(char a, char b) {
+    if (a+1 == b) return "";  // 删除'-'
+    std::string r;
+    char x = a + 1;
+    if (p1 == 2) x = std::toupper(x);
+    else if (p1 == 3) x = '*';
+    for (a += 1; a < b; ++a) {
+        for0(i, p2)
+            r.push_back(x);
+        if (x != '*') x += 1;
     }
+    if (p3 == 2) std::reverse(r.begin(), r.end());
+    return r;
+}
+// 数字处理
+std::string Calc2(char a, char b) {
+    if (a+1 == b) return "";  // 删除'-'
+    std::string r;
+    char x = a + 1;
+    if (p1 == 3) x = '*';
+    for (a += 1; a < b; ++a) {
+        for0(i, p2)
+            r.push_back(x);
+        if (x != '*') x += 1;
+    }
+    if (p3 == 2) std::reverse(r.begin(), r.end());
+    return r;
+}
+void Solve() {
+    std::cin >> p1 >> p2 >> p3;
+    std::cin >> str;
+    std::string ans;
+    for (ll i = 0; i < str.size(); ++i) {
+        if (str[i] != '-') {
+            ans.push_back(str[i]);
+            continue;
+        }
+        assert(str[i] == '-');
+        if (ans.size() == 0 || i == str.size()-1) {  // last or first
+            ans.push_back(str[i]);
+            continue;
+        }
+        auto a = ans[ans.size()-1];
+        auto b = str[i+1];
+        if (a>='a' && a<='z' && b>='a' && b<='z' && b>a) {  // alpha
+            auto v = Calc1(a, b);
+            ans.append(v);
+            continue;
+        }
+        if (a>='0' && a<='9' && b>='0' && b<='9' && b>a) {  // digit
+            auto v = Calc2(a, b);
+            ans.append(v);
+            continue;
+        }
+        ans.push_back(str[i]);
+    }
+    col(ans);
 }
 // -------------------------------------------------
 
