@@ -1,34 +1,12 @@
-8
-2 O(1)
-F i 1 1
-E
-2 O(n^1)
-F x 1 n
-E
-1 O(1)
-F x 1 n
-4 O(n^2)
-F x 5 n
-F y 10 n
-E
-E
-4 O(n^2)
-F x 9 n
-E
-F y 2 n
-E
-4 O(n^1)
-F x 9 n
-F y n 4
-E
-E
-4 O(1)
-F y n 4
-F x 9 n
-E
-E
-4 O(n^2)
-F x 1 n
-F x 1 10
-E
-E
+2
+
+示例 1：
+
+输入：text = "abcabcabc"
+输出：3
+解释：3 个子字符串分别为 "abcabc" ， "bcabca" 和 "cabcab" 。
+示例 2：
+
+输入：text = "leetcodeleetcode"
+输出：2
+解释：2 个子字符串为 "ee" 和 "leetcodeleetcode" 。
