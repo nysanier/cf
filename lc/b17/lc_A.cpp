@@ -30,15 +30,12 @@ void Solve() {
     std::string out;
     lc::Read(in, out);
 
-    vector<int> arg0; int arg1, arg2, arg3;
-    lc::ParseArg(in[0], arg0);
-    lc::ParseArg(in[1], arg1);
-    lc::ParseArg(in[2], arg2);
-    lc::ParseArg(in[3], arg3);
-    DUMP(arg0, arg1, arg2, arg3);
+    vector<int> nums;
+    lc::ParseArg(in[0], nums);
+    DUMP(nums);
 
     Solution sol;
-    auto r = sol.decompressRLElist(arg0, arg1, arg2, arg3);
+    auto r = sol.decompressRLElist(nums);
     DUMP(out, r);
     // assert(out == to_string(r));
 }
