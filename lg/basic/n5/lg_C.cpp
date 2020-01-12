@@ -36,15 +36,38 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
+const ll N = 20 + 9;
 ll n;
-ll a[N];
+std::string a[N];
 void Init() {}
+// 有前缀的处理方案
+// 32-321, 那么 32 > 321
+// 32-3233, 那么 32 < 3233
+bool Less(const std::string& a, const std::string& b) {
+    assert(a.size() < b.size());
+    auto p = b.find(a);
+    if (p > 0) return a < b;
+    auto c = b.substr(a.size());
+    return a < c;
+}
+bool Cmp(const std::string& a, const std::string& b) {
+    if (a.size() == b.size()) return a < b;
+    if (a.size() < b.size()) return Less(a, b);
+    return !Less(b, a);
+}
 void Solve() {
     std::cin >> n;
     for0(i, n) {
         std::cin >> a[i];
     }
+    std::sort(a, a+n, Cmp);
+    std::vector<std::string> vec(a, a+n);
+    DUMP(vec);
+    std::string ans;
+    for0r(i, n) {
+        ans += a[i];
+    }
+    col(ans);
 }
 // -------------------------------------------------
 

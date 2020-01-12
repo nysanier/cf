@@ -36,15 +36,46 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-ll n;
-ll a[N];
+const ll N = 100 + 9;
+std::string a, b, c;
+Mp mp;  // secret -> plain
+St st;  // all used plain char
 void Init() {}
 void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    std::cin >> a >> b >> c;
+    if (a.size() != b.size()) {  // 不等长
+        col("Failed");
+        return;
     }
+
+    for0(i, a.size()) {
+        auto x = a[i];
+        auto y = b[i];
+        auto it = mp.find(x);
+        if (it == mp.end()) {
+            if (st.find(y) != st.end()) {  // 明文已经被用掉了
+                col("Failed");
+                return;
+            }
+            mp[x] = y;
+            st.insert(y);
+            continue;
+        }
+        if (it->second != y) {  // 必须唯一映射
+            col("Failed");
+            return;
+        }
+    }
+
+    if (mp.size() != 26 || st.size() != 26) {  // 没有映射全
+        col("Failed");
+        return;
+    }
+
+    std::string ans;
+    for (auto ch : c)
+        ans.push_back(mp[ch]);
+    col(ans);
 }
 // -------------------------------------------------
 
