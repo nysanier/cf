@@ -36,15 +36,29 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
+const ll N = 1000 + 9;
 ll n;
-ll a[N];
+ll t[N], ids[N];
 void Init() {}
 void Solve() {
     std::cin >> n;
     for0(i, n) {
-        std::cin >> a[i];
+        std::cin >> t[i];
+        ids[i] = i;
     }
+    std::sort(ids, ids+n, [](ll id1, ll id2){
+        return t[id1] < t[id2];
+    });
+    ll tot = 0;
+    for0(i, n) {
+        auto id = ids[i];
+        tot += (n-i-1) * t[id];
+    }
+    for0(i, n) {
+        printf("%ld%s", long(ids[i]+1), (i==n-1?"\n":" "));
+    }
+    auto ans = double(tot) / n;
+    printf("%.2lf\n", ans);
 }
 // -------------------------------------------------
 

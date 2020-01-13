@@ -36,15 +36,30 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-ll n;
-ll a[N];
+const ll N = 5000 + 9;
+ll n, m;
+ll a[N], b[N], ids[N];
 void Init() {}
 void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    std::cin >> n >> m;
+    for0(i, m) {
+        std::cin >> a[i] >> b[i];
+        ids[i] = i;
     }
+    // 单价小的排在前面
+    std::sort(ids, ids+m, [](ll id1, ll id2){
+        return a[id1] < a[id2];
+    });
+    ll ans = 0;
+    for0(i, m) {
+        auto id = ids[i];
+        auto m1 = std::min(n, b[id]);
+        ans += m1 * a[id];
+        n -= m1;
+        DUMP(i, id, a[id], m1, ans, n);
+        if (n == 0) break;
+    }
+    col(ans);
 }
 // -------------------------------------------------
 
