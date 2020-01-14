@@ -35,16 +35,56 @@ using Mp = std::map<ll, ll>;
 using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
+// 回溯一下即可
 // -------------------------------------------------
-const ll N = 2e5 + 9;
+const ll N = 13 + 9;
 ll n;
-ll a[N];
-void Init() {}
+ll r[N], c[N];  // 行列标记
+ll a[2*N];  // 斜线标记，r+c, [1+1, n+n], 共2n-1个, 都-1, -> [1, 2n-1]
+ll b[2*N];  // 反斜线标记, r-c, [1-n, n-1], 共2n-1个, 都+n, -> [1, 2n-1]
+ll v[N];
+// 不能使用set啊，超过10以后，字典序排列有问题了，比如10会排的前面!!!
+std::vector<std::string> vec;
+void Init() {
+    memset(r, 0, sizeof(r));
+    memset(c, 0, sizeof(c));
+    memset(a, 0, sizeof(a));
+    memset(b, 0, sizeof(b));
+}
+std::string Make() {
+    std::string ret = std::to_string(v[1]);
+    for (int i = 2; i <= n; ++i) {
+        ret += " " + std::to_string(v[i]);
+    }
+    return ret;
+}
+void Dfs(int i) {
+    if (i == n+1) {
+        auto ret = Make();
+        vec.push_back(ret);
+        return;
+    }
+
+    for (int j = 1; j <= n; ++j) {
+        if (r[i]) continue;
+        if (c[j]) continue;
+        if (a[i+j-1]) continue;
+        if (b[i-j+n]) continue;
+        r[i] = 1; c[j] = 1; a[i+j-1] = 1; b[i-j+n] = 1;
+        v[i] = j;
+        Dfs(i+1);
+        r[i] = 0; c[j] = 0; a[i+j-1] = 0; b[i-j+n] = 0;
+    }
+}
 void Solve() {
     std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    Dfs(1);
+
+    auto it = vec.begin();
+    for (int i = 0; i < 3 && it != vec.end(); ++i, ++it) {
+        col(*it);
     }
+    col(vec.size());
 }
 // -------------------------------------------------
 
