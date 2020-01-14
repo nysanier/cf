@@ -36,15 +36,63 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
+const ll N = 3e4 + 9;
+ll w;
 ll n;
 ll a[N];
+Mst mst;
 void Init() {}
 void Solve() {
+    std::cin >> w;
     std::cin >> n;
     for0(i, n) {
         std::cin >> a[i];
+        mst.insert(a[i]);
     }
+
+    ll ans = 0;
+    while (!mst.empty()) {
+        auto it = mst.begin();
+        auto x = *it;
+        mst.erase(it);
+        auto y = w - x;  // 最多取y，不能超过y
+        assert(y >= 0);
+        if (mst.empty()) {
+            ans += 1;
+            y = -1;
+            DUMP("empty", x, y);
+            continue;
+        }
+
+        auto it2 = mst.lower_bound(y);
+        // 当前的值都比y小，那么退而求其次，取其中一个最大的即可
+        if (it2 == mst.end()) {
+            y = *--it2;
+            mst.erase(it2);
+            ans += 1;
+            DUMP("<y", x, y);
+            continue;
+        }
+
+        // 看看是否还存在比y小的值
+        if (*it2 > y) {
+            if (*mst.begin() < y) {
+                y = *--it2;
+                mst.erase(it2);
+            } else {  // 都比y大，那么x没有搭配了
+                y = -1;
+            }
+            ans += 1;
+            DUMP(">y", x, y);
+            continue;
+        }
+
+        // 刚好取到=y这个值
+        mst.erase(it2);
+        ans += 1;
+        DUMP("=y", x, y);
+    }
+    col(ans);
 }
 // -------------------------------------------------
 

@@ -36,15 +36,46 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
+const ll N = 1e6 + 9;
 ll n;
-ll a[N];
+ll a[N], s[N], t[N];
 void Init() {}
 void Solve() {
     std::cin >> n;
     for0(i, n) {
-        std::cin >> a[i];
+        std::cin >> s[i] >> t[i];
+        a[i] = i;
     }
+    std::sort(a, a+n, [](int x, int y){
+        return s[x] < s[y];
+    });
+    ll ans = 0;
+    // ll cur = 0;  // 当前结束点
+    ll x = -1;  // 待确认的线段
+    for0(i, n) {
+        if (x == -1) {
+            x = a[i];
+            continue;
+        }
+        auto y = a[i];
+        // 前面那根可以确认了
+        if (s[y] >= t[x]) {
+            ans += 1;
+            x = y;
+            continue;
+        }
+        // 这根线段没有替换优势，直接放弃
+        if (t[y] >= t[x]) {
+            continue;
+        }
+        assert(t[y] < t[x]);
+        // 直接替换
+        x = y;
+    }
+    if (x != -1) {
+        ans += 1;
+    }
+    col(ans);
 }
 // -------------------------------------------------
 
