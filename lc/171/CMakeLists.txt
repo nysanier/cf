@@ -5,6 +5,7 @@ add_executable(lc_171_A lc_A.cpp)
 add_executable(lc_171_B lc_B.cpp)
 add_executable(lc_171_C lc_C.cpp)
 add_executable(lc_171_D lc_D.cpp)
+add_executable(lc_171_D2 lc_D2.cpp)
 
 # 题目列表得分 
 # 5307 将整数转换为两个无零整数的和3
