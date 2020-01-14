@@ -6,6 +6,8 @@ add_subdirectory(n3)
 add_subdirectory(n4)
 add_subdirectory(n5)
 add_subdirectory(n6)
+add_subdirectory(n7)
+add_subdirectory(n8)
 
 # 普及练习场
 # 普及组选手可冲刺训练，提高组选手亦可在此巩固基础。
