@@ -53,19 +53,19 @@ void Init() {
 }
 std::string Make() {
     std::string ret = std::to_string(v[1]);
-    for (int i = 2; i <= n; ++i) {
+    for (ll i = 2; i <= n; ++i) {
         ret += " " + std::to_string(v[i]);
     }
     return ret;
 }
-void Dfs(int i) {
+void Dfs(ll i) {
     if (i == n+1) {
         auto ret = Make();
         vec.push_back(ret);
         return;
     }
 
-    for (int j = 1; j <= n; ++j) {
+    for (ll j = 1; j <= n; ++j) {
         if (r[i]) continue;
         if (c[j]) continue;
         if (a[i+j-1]) continue;
@@ -81,7 +81,7 @@ void Solve() {
     Dfs(1);
 
     auto it = vec.begin();
-    for (int i = 0; i < 3 && it != vec.end(); ++i, ++it) {
+    for (ll i = 0; i < 3 && it != vec.end(); ++i, ++it) {
         col(*it);
     }
     col(vec.size());

@@ -35,16 +35,67 @@ using Mp = std::map<ll, ll>;
 using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
+// 回溯?
 // -------------------------------------------------
-const ll N = 2e5 + 9;
+const ll N = 20 + 9;
 ll n;
-ll a[N];
-void Init() {}
+std::string a[N];
+std::string head;
+ll vis[N];  // 最多两次
+ll ans = 0;
+std::string res;
+void Init() {
+    memset(vis, 0, sizeof(vis));
+}
+// 判断t是否可以接在s后面，如果可以，接上去的那段是v
+bool Check(const std::string& s, const std::string& t, std::string& v) {
+    if (s.size() == 1 || t.size() == 1) return false;
+    ll m1 = std::min(s.size()-1, t.size()-1);
+    for (ll i = 1; i <= m1; ++i) {
+        auto p1 = s.rfind(t.substr(0, i));
+        if (p1 == s.size() - i) {
+            v = t.substr(i);
+            return true;
+        }
+    }
+    return false;
+}
+void Dfs(const std::string& cur) {
+    // static ll cnt = 0;
+    // if (cnt++ < 100) DUMP(cur, res);
+    for (int i = 0; i < n; ++i) {
+        if (vis[i] >= 2) continue;
+        std::string v;
+        if (!Check(cur, a[i], v)) continue;
+        res.append(v);
+        if (res.size() > ans) {
+            ans = res.size();
+            // DUMP(ans, res);
+        }
+        vis[i] += 1;
+        Dfs(a[i]);
+        vis[i] -= 1;
+        res.resize(res.size() - v.size());
+    }
+}
 void Solve() {
     std::cin >> n;
     for0(i, n) {
         std::cin >> a[i];
     }
+    std::cin >> head;
+    for0(i, n) {
+        if (a[i].size() > 1 && a[i][0] == head[0]) {
+            vis[i] += 1;
+            res.append(a[i]);
+            if (res.size() > ans)
+                ans = res.size();
+            Dfs(a[i]);
+            res.resize(res.size() - a[i].size());
+            vis[i] -= 1;
+        }
+    }
+    col(ans);
 }
 // -------------------------------------------------
 
