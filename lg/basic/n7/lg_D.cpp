@@ -36,15 +36,44 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-ll n;
-ll a[N];
-void Init() {}
-void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+const ll N = 5 + 9;
+ll n, m, t;
+ll sx, sy, fx, fy;
+ll a[N][N];
+ll vis[N][N];
+ll ans = 0;
+// up/right/down/left
+const ll dir[4][2] = {{0,1}, {1,0}, {0,-1}, {-1,0}};
+void Init() {
+    memset(a, 0, sizeof(a));
+    memset(vis, 0, sizeof(vis));
+}
+void Dfs(ll x, ll y) {
+    if (x==fx && y==fy) {
+        ans += 1;
+        return;
     }
+    for0(d, 4) {
+        auto nx = x + dir[d][0];
+        auto ny = y + dir[d][1];
+        if (nx<1 || nx>n || ny<1 || ny>m || a[nx][ny] || vis[nx][ny])
+            continue;
+        vis[nx][ny] = 1;
+        Dfs(nx, ny);
+        vis[nx][ny] = 0;
+    }
+}
+void Solve() {
+    std::cin >> n >> m >> t;
+    std::cin >> sx >> sy >> fx >> fy;
+    ll x, y;
+    for0(i, t) {
+        std::cin >> x >> y;
+        a[x][y] = 1;  // 障碍
+    }
+    vis[sx][sy] = 1;
+    Dfs(sx, sy);
+    col(ans);
 }
 // -------------------------------------------------
 

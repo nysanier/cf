@@ -36,14 +36,53 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
+const ll N = 100 + 9;
 ll n;
-ll a[N];
-void Init() {}
+std::string a[N];
+char res[N][N];
+// up/ri/do/le
+// ur/dr/dl/ul
+const ll dir[8][2] = {
+    {0,1}, {1,0}, {0,-1}, {-1,0},
+    {1,1}, {1,-1}, {-1,-1}, {-1,1}
+};
+const std::string s("yizhong");
+void Init() {
+    memset(res, '*', sizeof(res));
+}
+bool Check(ll x, ll y, ll d) {
+    for0(i, 7) {  // yizhong
+        if (i > 0) {
+            x += dir[d][0];
+            y += dir[d][1];
+        }
+        if (x<0 || x>=n || y<0 || y>=n || a[x][y]!=s[i])
+            return false;
+    }
+    return true;
+}
+void Paint(ll x, ll y, ll d) {
+    for0(i, 7) {  // yizhong
+        if (i > 0) {
+            x += dir[d][0];
+            y += dir[d][1];
+        }
+        res[x][y] = s[i];
+    }
+}
 void Solve() {
     std::cin >> n;
     for0(i, n) {
         std::cin >> a[i];
+        res[i][n] = 0;
+    }
+    for0(i, n) for0(j, n) for0(d, 8) {
+        if (Check(i, j, d)) {
+            Paint(i, j, d);
+        }
+    }
+    for0(i, n) {
+        col(res[i]);
     }
 }
 // -------------------------------------------------
