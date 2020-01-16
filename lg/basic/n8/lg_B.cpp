@@ -35,16 +35,59 @@ using Mp = std::map<ll, ll>;
 using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
+// 20ms/1.41MB
+// 24ms/1.27MB  用了std::hash<std::string> 之后内存是稍微小了一点，可能规模太小没有体现出来吧，
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-ll n;
-ll a[N];
+const ll N = 20 + 9;
+std::string src, dst;
+std::multimap<std::string, std::string> mmp;
+// std::unordered_set<std::string> st;
+std::unordered_set<size_t> st;
+std::hash<std::string> hs;
 void Init() {}
-void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+void Bfs() {
+    using Pr = std::pair<ll, std::string>;
+    std::queue<Pr> q;
+    q.push({0, src});
+    // st.insert(src);
+    st.insert(hs(src));
+    while (!q.empty()) {
+        auto t = q.front(); q.pop();
+        if (t.second == dst) {
+            col(t.first);
+            return;
+        }
+        // DUMP(t.first, t.second);
+        auto nf = t.first+1;
+        if (nf > 10) continue;
+        for (auto& kv : mmp) {
+            for (std::string::size_type p1 = 0;;) {
+                auto p2 = t.second.find(kv.first, p1);
+                if (p2 == t.second.npos) break;
+                auto ns = t.second.substr(0, p2) + kv.second + t.second.substr(p2+kv.first.size());
+                p1 = p2 + 1;
+                // if (st.find(ns) == st.end()) {
+                auto hsv = hs(ns);
+                if (st.find(hsv) == st.end()) {
+                    st.insert(hsv);
+                    // st.insert(ns);
+                    q.push({nf, ns});
+                }
+                // DUMP("=", nf, ns);
+            }
+            
+        }
     }
+
+    col("NO ANSWER!");
+}
+void Solve() {
+    std::cin >> src >> dst;
+    std::string a, b;
+    while (std::cin >> a >> b) {
+        mmp.insert({a,b});
+    }
+    Bfs();
 }
 // -------------------------------------------------
 

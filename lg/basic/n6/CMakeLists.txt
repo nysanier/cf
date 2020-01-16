@@ -8,7 +8,7 @@ add_executable(lg_basic_n6_D lg_D.cpp)
 add_executable(lg_basic_n6_E lg_E.cpp)
 add_executable(lg_basic_n6_F lg_F.cpp)
 add_executable(lg_basic_n6_G ../n2/lg_B.cpp)
-add_executable(lg_basic_n6_H lg_H.cpp)
+# add_executable(lg_basic_n6_H lg_H.cpp)  # python3 实现
 
 # 贪心
 # 关卡2-6， 8道题 可挑战

@@ -23,7 +23,7 @@
 
 // type
 // using ll = int32_t;
-using ll = int64_t;
+using ll = int;
 using Vec = std::vector<ll>;
 using Deq = std::deque<ll>;
 using Lst = std::list<ll>;
@@ -35,15 +35,64 @@ using Mp = std::map<ll, ll>;
 using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
+// 找到所有的0的连通分量，并标记这个每个连通分量是否最后能够触碰到边界
+// 如果不能触碰到边界，那么就是被1围堵了
 // -------------------------------------------------
-const ll N = 2e5 + 9;
+const ll N = 30 + 9;
+// up/right/down/left
+const ll dir[4][2] = {{0,1}, {1,0}, {0,-1}, {-1,0}};
 ll n;
-ll a[N];
-void Init() {}
+ll a[N][N];
+ll vis[N][N];
+std::vector<std::set<Pr>> x;  // 所有的连通分量
+std::vector<bool> y;
+void Init() {
+    memset(vis, 0, sizeof(vis));
+}
+void Bfs(ll r, ll c) {
+    bool flag = false;  // 能否碰到边界
+    std::vector<Pr> vec;  // 当前连通分量
+    vec.push_back({r,c});
+    std::queue<Pr> q;
+    q.push({r,c});
+    DUMP(r, c);
+    vis[r][c] = 1;
+    while (!q.empty()) {
+        auto t = q.front(); q.pop();
+        for0(d, 4) {
+            auto nr = t.first + dir[d][0];
+            auto nc = t.second + dir[d][1];
+            if (nr < 0 || nr >= n || nc < 0 || nc >= n) {
+                flag = true;
+                continue;
+            }
+            if (a[nr][nc] != 0 || vis[nr][nc]) continue;
+            vis[nr][nc] = 1;
+            q.push({nr,nc});
+            static ll cnt = 0;
+            if (cnt++ < 100)
+                DUMP(nr, nc);
+            vec.push_back({nr,nc});
+        }
+    }
+    
+    if (!flag) {
+        for(auto& kv : vec) {
+            a[kv.first][kv.second] = 2;
+        }
+    }
+}
 void Solve() {
     std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    for0(i, n) for0(j, n)
+        std::cin >> a[i][j];
+    for0(i, n) for0(j, n) {
+        if (a[i][j] == 0 && !vis[i][j]) {
+            Bfs(i, j);
+        }
+    }
+    for0(i, n) for0(j, n) {
+        printf("%d%c", a[i][j], j==n-1 ? '\n' : ' ');
     }
 }
 // -------------------------------------------------
