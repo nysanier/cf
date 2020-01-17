@@ -39,8 +39,8 @@ using Ump = std::unordered_map<ll, ll>;
 解题思路:
     1. bfs，最快搜索到的就是最少时间。这里机器人会占据4个格子，因此需要注意计算障碍物对机器人的影响(只能在1~n-1范围内活动)
     2. r/c/dir表示一个状态
-    3. 优先走3步的，这三步都不会遇到障碍，然后走2步，最后走1步
-    4. 转向肯定不会遇到障碍，和走几步没有先后关系
+    3. 1/2/3步怎么走都是等价的，在走多步的过程中一定要注意每步都是可达的
+    4. 转向肯定不会遇到障碍
     5. 总共5种状态进行尝试
     6. 最快找到目的地的就是最短路径
 解题步骤:
@@ -119,13 +119,12 @@ bool Next(ll x, const S& s, ll& nr, ll& nc, ll& nd) {
         return true;
     }
 
-    // 优先3步，然后2步，最后1步
     if (x == 2) {
-        // 向前移动3步（Run）
+        // 向前移动1步（Creep）
         nr = s.r;
         nc = s.c;
         nd = s.d;
-        for0(i, 3) {
+        for0(i, 1) {
             nr += dir[s.d][0];
             nc += dir[s.d][1];
             if (!Check(nr, nc))
@@ -149,11 +148,11 @@ bool Next(ll x, const S& s, ll& nr, ll& nc, ll& nd) {
     }
 
     if (x == 4) {
-        // 向前移动1步（Creep）
+        // 向前移动3步（Run）
         nr = s.r;
         nc = s.c;
         nd = s.d;
-        for0(i, 1) {
+        for0(i, 3) {
             nr += dir[s.d][0];
             nc += dir[s.d][1];
             if (!Check(nr, nc))
