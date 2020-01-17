@@ -35,6 +35,12 @@ using Mp = std::map<ll, ll>;
 using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
+/*
+解体思路：
+    1. 
+    2. 
+    3. 
+*/
 // -------------------------------------------------
 const ll N = 2e5 + 9;
 ll n;

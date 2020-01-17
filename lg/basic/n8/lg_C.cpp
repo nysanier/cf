@@ -35,15 +35,61 @@ using Mp = std::map<ll, ll>;
 using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
+/*
+解体思路：0->1 && 1->0，所以对于这个连通分量中的所有格子可以互相到达，且能够到达到的格子数也相同
+    1. 计算所有连通分量，同时计算这个分量大小
+    2. 对于每个mi，判断在哪个连通分量中，输出对应的分量大小
+    3. 
+*/
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-ll n;
-ll a[N];
-void Init() {}
+// up/right/down/left
+const ll dir[4][2] = {{0,1}, {1,0}, {0,-1}, {-1,0}};
+const ll N = 1000 + 9;
+ll n, m;
+std::string a[N];
+ll vis[N][N];
+ll res[N][N];
+ll cnt;  // 当前连通分量计数
+std::vector<Pr> vec;  // 当前连通分量包含了哪些点
+// std::;  // i*1000+j作为标记
+void Init() {
+    memset(vis, 0, sizeof(vis));
+}
+// v: 当前值，0: 那么下一次必须是1
+void Dfs(ll r, ll c, ll v) {
+    for0(d, 4) {
+        auto nr = r + dir[d][0];
+        auto nc = c + dir[d][1];
+        auto nv = !v;
+        if (nr < 0 || nr >= n || nc < 0 || nc >= n) continue;
+        if (vis[nr][nc] || a[nr][nc]-'0' != nv) continue;
+        vis[nr][nc] = 1;
+        vec.push_back({nr, nc});
+        cnt += 1;
+        Dfs(nr, nc, nv);
+    }
+}
 void Solve() {
-    std::cin >> n;
+    std::cin >> n >> m;
     for0(i, n) {
         std::cin >> a[i];
+    }
+    for0(i, n) for0(j, n) {
+        if (!vis[i][j]) {
+            vis[i][j] = 1;
+            vec.clear();
+            vec.push_back({i,j});
+            cnt = 1;
+            Dfs(i, j, a[i][j]-'0');
+            for (auto& kv : vec) {
+                res[kv.first][kv.second] = cnt;
+            }
+        }
+    }
+    ll r, c;
+    for0(i, m) {
+        std::cin >> r >> c;
+        col(res[r-1][c-1]);
     }
 }
 // -------------------------------------------------
