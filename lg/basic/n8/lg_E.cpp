@@ -23,7 +23,7 @@
 
 // type
 // using ll = int32_t;
-using ll = int64_t;
+using ll = int;
 using Vec = std::vector<ll>;
 using Deq = std::deque<ll>;
 using Lst = std::list<ll>;
@@ -36,14 +36,47 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 // -------------------------------------------------
-const ll N = 2e5 + 9;
-ll n;
-ll a[N];
-void Init() {}
+struct S{
+    ll r,c,v;
+};
+// 马步
+const ll dir[8][2] = {
+    {-1, +2}, {+1, +2},  // 右边
+    {+2, -1}, {+2, +1},  // 下边
+    {-1, -2}, {+1, -2},  // 左边
+    {-2, -1}, {-2, +1},  // 上边
+};
+const ll N = 400 + 9;
+ll n, m;
+ll a[N][N];
+S src;
+void Init() {
+    memset(a, -1, sizeof(a));
+}
 void Solve() {
-    std::cin >> n;
-    for0(i, n) {
-        std::cin >> a[i];
+    std::cin >> n >> m;
+    std::cin >> src.r >> src.c;
+    src.v = 0;
+    std::queue<S> q;
+    q.push(src);
+    a[src.r][src.c] = src.v;
+    while (!q.empty()) {
+        auto t = q.front(); q.pop();
+        auto nv = t.v + 1;
+        for0(i, 8) {
+            auto nr = t.r + dir[i][0];
+            auto nc = t.c + dir[i][1];
+            if (nr < 1 || nr >n || nc < 1 || nc > m) continue;
+            if (a[nr][nc] != -1) continue;
+            a[nr][nc] = nv;
+            q.push({nr, nc, nv});
+        }
+    }
+    for1(i, n) {
+        for1(j, m) {
+            printf("%-5d", a[i][j]);
+        }
+        puts("");
     }
 }
 // -------------------------------------------------
