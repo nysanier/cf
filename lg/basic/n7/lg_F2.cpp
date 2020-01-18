@@ -89,22 +89,59 @@ bool CheckPartly() {
         if (!vis[sa] || !vis[sb] || !vis[sc]) break;  // 有一个字母还未确定下来
     }
     if (l == 0) return true;  // 还不能确定
+    static ll cnt = 0;
+    bool fdump = false;
+    if (l > 0 && cnt++ < 15) {
+        fdump = true;
+    }
+
+    if (fdump) {
+        DUMP(l);
+        co("a:");
+        for0(i, n) {
+            auto sa = rseq[a[i]];
+            co(v[sa]);
+        }
+        col("");
+        co("b:");
+        for0(i, n) {
+            auto sa = rseq[b[i]];
+            co(v[sa]);
+        }
+        col("");
+        co("c:");
+        for0(i, n) {
+            auto sa = rseq[c[i]];
+            co(v[sa]);
+        }
+        col("");
+    }
     ll br = 0;
-    for0(x, l-1) {
+    for0(x, l) {
         auto sa = rseq[a[x]];
         auto sb = rseq[b[x]];
         auto sc = rseq[c[x]];
         auto vab = v[sa] + v[sb];
         if (br == 1) {
-            if (v[sa] + v[sb] < n) return false;  // 不够借位
+            if (v[sa] + v[sb] < n) {
+                if (fdump) DUMP("false", x, "br == 1");
+                return false;  // 不够借位
+            }
             vab -= n;
         }
-        if (vab > v[sc]) return false;  // a或者b太大了，没有必要继续算了
+        if (vab > v[sc]) {
+            if (fdump) DUMP("false", x, "vab > v[sc]");
+            return false;  // a或者b太大了，没有必要继续算了
+        }
         else if (vab == v[sc]) br = 0;
         else if (vab + 1 == v[sc]) br = 1;
-        else return false;  // 太小了，无法靠进位
+        else {
+            if (fdump) DUMP("false", x, "else");
+            return false;  // 太小了，无法靠进位
+        }
     }
 
+    if (fdump) DUMP("true");
     return true;
 }
 void Dfs(ll k) {
@@ -118,15 +155,18 @@ void Dfs(ll k) {
     }
     if (flag) return;
     for0(i, n) {
-        if (!CheckPartly()) continue;
-        if (!vis[i]) {
-            vis[i] = 1;
-            v[k] = i;
-            Dfs(k+1);
-            if (flag) return;
+        if (vis[i]) continue;
+        vis[i] = 1;
+        v[k] = i;
+        if (!CheckPartly()) {
             v[k] = -1;
             vis[i] = 0;  // 回溯
+            continue;
         }
+        Dfs(k+1);
+        if (flag) return;
+        v[k] = -1;
+        vis[i] = 0;  // 回溯
     }
 }
 void Solve() {
