@@ -36,6 +36,7 @@ using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
 /*
+还是无法解决TLE问题
 解题思路:
     1. 迭代的计算A-N(0-N-1)，复杂度O(26!)，可能要考虑剪枝
     2. 剪枝策略：最高位取值后，然后算一下后面的位是否会超出范围
@@ -51,57 +52,79 @@ ll n;
 std::string a, b, c;
 ll v[N];
 ll vis[N];  // 0-26是否已经被占用
+Vec seq;  // 搜索顺序
+ll rseq[N];  // 字母对应的搜索顺序
+St st;  // 安排seq时候辅助去重
 bool flag;
 void Init() {
     memset(vis, 0, sizeof(vis));
+    memset(v, -1, sizeof(v));
 }
 bool Check() {
-    // co("check:");
-    // for0(i, n) co(v[i]);
-    // col("");
-    // Vec vec(v, v+n);
-    // if (vec == Vec{1,0,3,4,2})
-    //     DUMP(vec);
-    ll br = 0;
+    ll cr = 0;
     for0r(i, n) {
-        auto vab = v[a[i]] + v[b[i]];
-        auto vabm = (vab + br) % n;
-        auto vc = v[c[i]];
-        // if (vec == Vec{1,0,3,4,2})
-        //     DUMP(i, vab, vabm, vc);
+        auto vab = v[rseq[a[i]]] + v[rseq[b[i]]];
+        auto vabm = (vab + cr) % n;
+        auto vc = v[rseq[c[i]]];
         if (vabm != vc) {
-            // if (vec == Vec{1,0,3,4,2})
-            //     DUMP("vabm != vc");
             return false;
         }
-        if (vab + br >= n)  // 进位
-            br = 1;
+        if (vab + cr >= n)  // 进位
+            cr = 1;
         else
-            br = 0;
+            cr = 0;
     }
-    if (br == 1) {
-        // if (vec == Vec{1,0,3,4,2})
-        //     DUMP("br == 1");
+    if (cr == 1) {
         return false;  // 最后不能进位
     }
+    return true;
+}
+bool CheckPartly() {
+    ll l = 0;
+    for (; l < n; ++l) {
+        auto sa = rseq[a[l]];
+        auto sb = rseq[b[l]];
+        auto sc = rseq[c[l]];
+        // DUMP("part", sa, sb, sc);
+        if (!vis[sa] || !vis[sb] || !vis[sc]) break;  // 有一个字母还未确定下来
+    }
+    if (l == 0) return true;  // 还不能确定
+    ll br = 0;
+    for0(x, l-1) {
+        auto sa = rseq[a[x]];
+        auto sb = rseq[b[x]];
+        auto sc = rseq[c[x]];
+        auto vab = v[sa] + v[sb];
+        if (br == 1) {
+            if (v[sa] + v[sb] < n) return false;  // 不够借位
+            vab -= n;
+        }
+        if (vab > v[sc]) return false;  // a或者b太大了，没有必要继续算了
+        else if (vab == v[sc]) br = 0;
+        else if (vab + 1 == v[sc]) br = 1;
+        else return false;  // 太小了，无法靠进位
+    }
+
     return true;
 }
 void Dfs(ll k) {
     if (k == n) {
         if (Check()) {
             flag = true;
-            for0(i, n) co(v[i]);
+            for0(i, n) co(v[rseq[i]]);
             col("");
             return;
         }
     }
     if (flag) return;
     for0(i, n) {
+        if (!CheckPartly()) continue;
         if (!vis[i]) {
             vis[i] = 1;
             v[k] = i;
             Dfs(k+1);
             if (flag) return;
+            v[k] = -1;
             vis[i] = 0;  // 回溯
         }
     }
@@ -113,7 +136,23 @@ void Solve() {
         a[i] -= 'A';
         b[i] -= 'A';
         c[i] -= 'A';
+        if (st.find(a[i]) == st.end()) {
+            seq.push_back(a[i]);
+            st.insert(a[i]);
+        }
+        if (st.find(b[i]) == st.end()) {
+            seq.push_back(b[i]);
+            st.insert(b[i]);
+        }
+        if (st.find(c[i]) == st.end()) {
+            seq.push_back(c[i]);
+            st.insert(c[i]);
+        }
     }
+    assert(st.size() == n);
+    assert(seq.size() == n);
+    for0(i, n)
+        rseq[seq[i]] = i;
     flag = false;
     Dfs(0);
 }
