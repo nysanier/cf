@@ -35,166 +35,84 @@ using Mp = std::map<ll, ll>;
 using Mmp = std::multimap<ll, ll>;
 using Ump = std::unordered_map<ll, ll>;
 
-/*
-还是无法解决TLE问题
-解题思路:
-    1. 迭代的计算A-N(0-N-1)，复杂度O(26!)，可能要考虑剪枝
-    2. 剪枝策略：最高位取值后，然后算一下后面的位是否会超出范围
-    3. 
-解题步骤:
-    1. 
-    2. 
-    3. 
-*/
+using namespace std;
+
 // -------------------------------------------------
 const ll N = 26 + 9;
-ll n;
-std::string a, b, c;
-ll v[N];
-ll vis[N];  // 0-26是否已经被占用
-Vec seq;  // 搜索顺序
-ll rseq[N];  // 字母对应的搜索顺序
-St st;  // 安排seq时候辅助去重
-bool flag;
-void Init() {
-    memset(vis, 0, sizeof(vis));
-    memset(v, -1, sizeof(v));
+int n,flag[N];
+char s[4][N];
+bool use[N];
+void Init() {}
+int id(char ch)//将字符串转换为数字 
+{
+    return ch-'A'+1;    
 }
-bool Check() {
-    ll cr = 0;
-    for0r(i, n) {
-        auto vab = v[rseq[a[i]]] + v[rseq[b[i]]];
-        auto vabm = (vab + cr) % n;
-        auto vc = v[rseq[c[i]]];
-        if (vabm != vc) {
-            return false;
+void dfs(int x,int y,int t)//x代表列，y代表行，t代表进位 
+{
+    if (x==0) //从上到下，从右到左，x==0表示搜到了最后一列 
+    {
+        if (t==0)//最后一列不能有进位，如果进了以为则第三个字符串会比其他两个字符串长一位 
+        {
+            for (int i=1;i<n;i++) //如果满足条件，就输出 
+                printf("%d ",flag[i]);//输出 
+            printf("%d\n",flag[n]);//输出 
+            exit(0);    //相当于return  0;程序结束 
         }
-        if (vab + cr >= n)  // 进位
-            cr = 1;
-        else
-            cr = 0;
+        return;//返回 
     }
-    if (cr == 1) {
-        return false;  // 最后不能进位
-    }
-    return true;
-}
-bool CheckPartly() {
-    ll l = 0;
-    for (; l < n; ++l) {
-        auto sa = rseq[a[l]];
-        auto sb = rseq[b[l]];
-        auto sc = rseq[c[l]];
-        // DUMP("part", sa, sb, sc);
-        if (!vis[sa] || !vis[sb] || !vis[sc]) break;  // 有一个字母还未确定下来
-    }
-    if (l == 0) return true;  // 还不能确定
-    static ll cnt = 0;
-    bool fdump = false;
-    if (l > 0 && cnt++ < 15) {
-        fdump = true;
-    }
-
-    if (fdump) {
-        DUMP(l);
-        co("a:");
-        for0(i, n) {
-            auto sa = rseq[a[i]];
-            co(v[sa]);
-        }
-        col("");
-        co("b:");
-        for0(i, n) {
-            auto sa = rseq[b[i]];
-            co(v[sa]);
-        }
-        col("");
-        co("c:");
-        for0(i, n) {
-            auto sa = rseq[c[i]];
-            co(v[sa]);
-        }
-        col("");
-    }
-    ll br = 0;
-    for0(x, l) {
-        auto sa = rseq[a[x]];
-        auto sb = rseq[b[x]];
-        auto sc = rseq[c[x]];
-        auto vab = v[sa] + v[sb];
-        if (br == 1) {
-            if (v[sa] + v[sb] < n) {
-                if (fdump) DUMP("false", x, "br == 1");
-                return false;  // 不够借位
-            }
-            vab -= n;
-        }
-        if (vab > v[sc]) {
-            if (fdump) DUMP("false", x, "vab > v[sc]");
-            return false;  // a或者b太大了，没有必要继续算了
-        }
-        else if (vab == v[sc]) br = 0;
-        else if (vab + 1 == v[sc]) br = 1;
-        else {
-            if (fdump) DUMP("false", x, "else");
-            return false;  // 太小了，无法靠进位
-        }
-    }
-
-    if (fdump) DUMP("true");
-    return true;
-}
-void Dfs(ll k) {
-    if (k == n) {
-        if (Check()) {
-            flag = true;
-            for0(i, n) co(v[rseq[i]]);
-            col("");
-            return;
-        }
-    }
-    if (flag) return;
-    for0(i, n) {
-        if (vis[i]) continue;
-        vis[i] = 1;
-        v[k] = i;
-        if (!CheckPartly()) {
-            v[k] = -1;
-            vis[i] = 0;  // 回溯
+    for (int i=x-1;i>=1;i--) //剪枝1 
+    {
+        int w1=flag[id(s[1][i])];//w1表示第一行字符串代表的数字 
+        int w2=flag[id(s[2][i])];//w2表示第二行字符串代表的数字 
+        int w3=flag[id(s[3][i])];//w3表示第三行字符串代表的数字 
+        if (w1==-1||w2==-1||w3==-1) //如果这个位置上还没被赋值，就返回 
             continue;
+        if ((w1+w2)%n!=w3&&(w1+w2+1)%n!=w3) 
+            return;    //如果无论进位与否，都不能整除对应的w3就说明字符串不匹配，直接return ; 
+    }
+    if (flag[id(s[y][x])]==-1) ////如果这个位置上还没被赋值，就进行赋值操作 
+    {
+        for (int i=n-1;i>=0;i--) //倒着枚举更快 
+            if (!use[i]) //如果这个数没有用过 
+            {
+                if (y!=3) //且不是最后一行 
+                {
+                    flag[id(s[y][x])]=i;//就将这个位置赋上值 
+                    use[i]=1;//标记这个数用过 
+                    dfs(x,y+1,t);//继续搜索下一行 
+                    flag[id(s[y][x])]=-1;//还原 
+                    use[i]=0;//还原 
+                }
+                else //当y==3时 
+                {
+                    int w=flag[id(s[1][x])]+flag[id(s[2][x])]+t;//两个数加上它们的进位 
+                    if (w%n!=i) 
+                        continue;
+                    use[i]=1;flag[id(s[3][x])]=i;//赋值，标记这个数用过 
+                    dfs(x-1,1,w/n);//搜索下一列，进位需要改变 
+                    use[i]=0;flag[id(s[3][x])]=-1;//还原 
+                }
+            }
+    }
+    else //如果这个位置上已经被赋值了 
+    {
+        if (y!=3) //继续搜索 
+            dfs(x,y+1,t);
+        else 
+        {
+            int w=flag[id(s[1][x])]+flag[id(s[2][x])]+t;
+            if (w%n!=flag[id(s[3][x])]) //剪枝 2
+                return;
+            dfs(x-1,1,w/n);//搜索下一列，进位需要改变 
         }
-        Dfs(k+1);
-        if (flag) return;
-        v[k] = -1;
-        vis[i] = 0;  // 回溯
     }
 }
 void Solve() {
-    std::cin >> n;
-    std::cin >> a >> b >> c;
-    for0(i, n) {
-        a[i] -= 'A';
-        b[i] -= 'A';
-        c[i] -= 'A';
-        if (st.find(a[i]) == st.end()) {
-            seq.push_back(a[i]);
-            st.insert(a[i]);
-        }
-        if (st.find(b[i]) == st.end()) {
-            seq.push_back(b[i]);
-            st.insert(b[i]);
-        }
-        if (st.find(c[i]) == st.end()) {
-            seq.push_back(c[i]);
-            st.insert(c[i]);
-        }
-    }
-    assert(st.size() == n);
-    assert(seq.size() == n);
-    for0(i, n)
-        rseq[seq[i]] = i;
-    flag = false;
-    Dfs(0);
+    scanf("%d",&n);//读入n,代表n进制等...... 
+    for (int i=1;i<=3;i++) 
+        scanf("%s",s[i]+1);//读入3行字符串 
+    memset(flag,-1,sizeof(flag));//将所有位置标记为未赋值 
+    dfs(n,1,0);//从右往左，上往下搜索，所有从第n列，第1行开始 
 }
 // -------------------------------------------------
 

@@ -6,6 +6,7 @@ add_executable(lg_basic_n7_B lg_B.cpp)
 add_executable(lg_basic_n7_C lg_C.cpp)
 add_executable(lg_basic_n7_D lg_D.cpp)
 add_executable(lg_basic_n7_E lg_E.cpp)
+add_executable(lg_basic_n7_E2 lg_E2.cpp)
 add_executable(lg_basic_n7_F lg_F.cpp)
 add_executable(lg_basic_n7_F2 lg_F2.cpp)
 
