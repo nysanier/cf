@@ -8,3 +8,7 @@ add_executable(lc_172_D lc_D.cpp)
 add_executable(lc_172_D2 lc_D2.cpp)
 
 # 题目列表得分 
+# 6 和 9 组成的最大数字3
+# 竖直打印单词4
+# 删除给定值的叶子节点5
+# 灌溉花园的最少水龙头数目6
