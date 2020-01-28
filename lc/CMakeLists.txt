@@ -14,3 +14,6 @@ add_subdirectory(173)
 # biweekly
 add_subdirectory(b16)
 add_subdirectory(b17)
+
+
+add_subdirectory(shudu)
