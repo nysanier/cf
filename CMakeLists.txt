@@ -27,3 +27,4 @@ add_subdirectory(lc)  # leetcode
 add_subdirectory(lg)  # luogu
 add_subdirectory(nc)  # nowcoder
 add_subdirectory(test)
+add_subdirectory(proj)
