@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
-# 1-26
+# 2-9
 add_executable(lc_175_A lc_A.cpp)
 add_executable(lc_175_B lc_B.cpp)
 add_executable(lc_175_C lc_C.cpp)
