@@ -35,18 +35,12 @@ void Solve() {
     std::string out;
     lc::Read(in, out);
 
-    vector<vector<int>> restaurants;
-    int veganFriendly;
-    int maxPrice;
-    int maxDistance;
-    lc::ParseArg(in[0], restaurants);
-    lc::ParseArg(in[1], veganFriendly);
-    lc::ParseArg(in[2], maxPrice);
-    lc::ParseArg(in[3], maxDistance);
-    DUMP(restaurants, veganFriendly, maxPrice, maxDistance);
+    vector<int> arr;
+    lc::ParseArg(in[0], arr);
+    DUMP(arr);
 
     Solution sol;
-    auto r = sol.filterRestaurants(restaurants, veganFriendly, maxPrice, maxDistance);
+    auto r = sol.minSetSize(arr);
     DUMP(out, r);
     // assert(out == to_string(r));
 }

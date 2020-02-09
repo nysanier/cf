@@ -72,16 +72,11 @@ void Solve() {
     std::string out;
     lc::Read(in, out);
 
-    int n;
-    vector<vector<int>> edges;
-    int distanceThreshold;
-    lc::ParseArg(in[0], n);
-    lc::ParseArg(in[1], edges);
-    lc::ParseArg(in[2], distanceThreshold);
-    DUMP(n, edges, distanceThreshold);
+    TreeNode* root = nullptr;
+    DUMP(root);
 
     Solution sol;
-    auto r = sol.findTheCity(n, edges, distanceThreshold);
+    auto r = sol.maxProduct(root);
     DUMP(out, r);
     // assert(out == to_string(r));
 }

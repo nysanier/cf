@@ -27,6 +27,7 @@ void Solve() {
     DUMP("------", idx, in, out);
     idx +=1;
 
+    #define FUNC func
     #define ARGS arg0, arg1, arg2, arg3
     int arg0;
     int arg1;
@@ -39,7 +40,7 @@ void Solve() {
     DUMP(ARGS);
 
     Solution sol;
-    auto r = sol.func(ARGS);
+    auto r = sol.FUNC(ARGS);
     DUMP(out, r);
     // assert(out == to_string(r));
 }

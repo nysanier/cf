@@ -12,7 +12,7 @@ public:
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
         vector<pair<int,int>> vec;
         int m = mat.size();
-        int n = mat[0].size();
+        // int n = mat[0].size();
         for (int i = 0; i < m; ++i) {
             int a = std::accumulate(mat[i].begin(), mat[i].end(), 0);
             vec.push_back({a, i});
@@ -36,12 +36,14 @@ void Solve() {
     std::string out;
     lc::Read(in, out);
 
-    string s;
-    lc::ParseArg(in[0], s);
-    DUMP(s);
+    vector<vector<int>> mat;
+    int k;
+    lc::ParseArg(in[0], mat);
+    lc::ParseArg(in[1], k);
+    DUMP(mat, k);
 
     Solution sol;
-    auto r = sol.removePalindromeSub(s);
+    auto r = sol.kWeakestRows(mat, k);
     DUMP(out, r);
     // assert(out == to_string(r));
 }

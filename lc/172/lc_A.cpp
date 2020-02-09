@@ -9,7 +9,7 @@ using namespace std;
 // # define DUMP(args...)
 class Solution {
 public:
-    int maximum69Number (int num) {
+    int maximum69Number(int num) {
         std::vector<int> vec;
         while (num > 0) {
             auto d = num % 10;
@@ -40,12 +40,12 @@ void Solve() {
     std::string out;
     lc::Read(in, out);
 
-    int n;
-    lc::ParseArg(in[0], n);
-    DUMP(n);
+    int num;
+    lc::ParseArg(in[0], num);
+    DUMP(num);
 
     Solution sol;
-    auto r = sol.getNoZeroIntegers(n);
+    auto r = sol.maximum69Number(num);
     DUMP(out, r);
     // assert(out == to_string(r));
 }

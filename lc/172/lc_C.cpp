@@ -45,14 +45,14 @@ void Solve() {
     std::string out;
     lc::Read(in, out);
 
-    int n;
-    vector<vector<int>> connections;
-    lc::ParseArg(in[0], n);
-    lc::ParseArg(in[1], connections);
-    DUMP(n, connections);
+    TreeNode* root = nullptr;
+    int target = 0;
+    // lc::ParseArg(in[0], n);
+    // lc::ParseArg(in[1], connections);
+    DUMP(root, target);
 
     Solution sol;
-    auto r = sol.makeConnected(n, connections);
+    auto r = sol.removeLeafNodes(root, target);
     DUMP(out, r);
     // assert(out == to_string(r));
 }

@@ -43,22 +43,14 @@ void Solve() {
     std::string out;
     lc::Read(in, out);
 
-    // int n{5};
-    // vector<int> ranges{3,4,1,1,0,0};
-    // int n{8};
-    // vector<int> ranges{4,0,0,0,0,0,0,0,4};
-    // int n{7};
-    // vector<int> ranges{1,2,1,0,2,1,0,1};
-    int n{3};
-    vector<int> ranges{0,0,0,0};
-    // int n{5};
-    // vector<int> ranges{3,4,1,1,0,0};
+    vector<int> jobDifficulty;
+    int d = 1;
     // lc::ParseArg(in[0], n);
     // lc::ParseArg(in[0], ranges);
-    DUMP(n, ranges);
+    DUMP(jobDifficulty, d);
 
     Solution sol;
-    auto r = sol.minTaps(n, ranges);
+    auto r = sol.minDifficulty(jobDifficulty, d);
     DUMP(out, r);
     // assert(out == to_string(r));
 }
