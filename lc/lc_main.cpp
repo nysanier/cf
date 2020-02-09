@@ -9,7 +9,7 @@ using namespace std;
 // # define DUMP(args...)
 class Solution {
 public:
-    bool func(vector<int>& arg0, int arg1, int arg2, int arg3) {
+    bool func(int arg0, int arg1, int arg2, int arg3) {
         return true;
     }
 };
@@ -20,19 +20,26 @@ void Init() {}
 void Solve() {
     using namespace std;
 
+    static int idx = 0;
     vector<string> in;
     std::string out;
     lc::Read(in, out);
+    DUMP("------", idx, in, out);
+    idx +=1;
 
-    vector<int> arg0; int arg1, arg2, arg3;
+    #define ARGS arg0, arg1, arg2, arg3
+    int arg0;
+    int arg1;
+    int arg2;
+    int arg3;
     lc::ParseArg(in[0], arg0);
     lc::ParseArg(in[1], arg1);
     lc::ParseArg(in[2], arg2);
     lc::ParseArg(in[3], arg3);
-    DUMP(arg0, arg1, arg2, arg3);
+    DUMP(ARGS);
 
     Solution sol;
-    auto r = sol.func(arg0, arg1, arg2, arg3);
+    auto r = sol.func(ARGS);
     DUMP(out, r);
     // assert(out == to_string(r));
 }

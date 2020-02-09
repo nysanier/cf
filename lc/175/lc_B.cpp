@@ -29,23 +29,27 @@ void Init() {}
 void Solve() {
     using namespace std;
 
-    // vector<string> in;
-    // std::string out;
-    // lc::Read(in, out);
+    static int idx = 0;
+    vector<string> in;
+    std::string out;
+    lc::Read(in, out);
+    DUMP("------", idx, in, out);
+    idx +=1;
 
-    // 为什么读不进来？
-    string s = "bab", t = "aba";
-    // string s, t;
-    // lc::ParseArg(in[0], s);
-    // lc::ParseArg(in[1], t);
+    #define ARGS arg0, arg1
+    string arg0;
+    string arg1;
+    // int arg2;
+    // int arg3;
+    lc::ParseArg(in[0], arg0);
+    lc::ParseArg(in[1], arg1);
     // lc::ParseArg(in[2], arg2);
     // lc::ParseArg(in[3], arg3);
-    DUMP(s, t);
+    DUMP(ARGS);
 
     Solution sol;
-    auto r = sol.minSteps(s, t);
-    // DUMP(out, r);
-    // assert(out == to_string(r));
+    auto r = sol.minSteps(ARGS);
+    DUMP(out, r);
 }
 // -------------------------------------------------
 

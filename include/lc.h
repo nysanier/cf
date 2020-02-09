@@ -30,20 +30,24 @@ void Read(std::vector<std::string>& in, std::string& out) {
     std::string si, so;
     const std::string li("输入：");
     const std::string lo("输出：");
+    // find prefixed with “输入：”
     for (;;) {
-        std::getline(std::cin, si);
+        if (!std::getline(std::cin, si)) break;
         if (si.size() < li.size()) continue;
         if (si.find(li) == 0) break;
     }
+    // find prefixed with “输出：”
     for (;;) {
-        std::getline(std::cin, so);
+        if (!std::getline(std::cin, so)) break;
         if (so.size() < lo.size()) continue;
         if (so.find(lo) == 0) break;
     }
-    // DUMP(si);
-    // DUMP(so);
     Parse(in, si.substr(li.size()));  // remove 输入：
     out = so.substr(lo.size());  // remove 输出：
+    if (in.empty() || out.empty()) {
+        DUMP("*invalid*", in, out);
+        assert(0);
+    }
 }
 
 string rq(const std::string& s) { return s.substr(1,s.size()-2); }
