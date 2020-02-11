@@ -33,12 +33,14 @@ void Read(std::vector<std::string>& in, std::string& out) {
     // find prefixed with “输入：”
     for (;;) {
         if (!std::getline(std::cin, si)) break;
+        // DUMP(si);
         if (si.size() < li.size()) continue;
         if (si.find(li) == 0) break;
     }
     // find prefixed with “输出：”
     for (;;) {
         if (!std::getline(std::cin, so)) break;
+        // DUMP(so);
         if (so.size() < lo.size()) continue;
         if (so.find(lo) == 0) break;
     }
