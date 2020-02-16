@@ -2,15 +2,60 @@
 // #include <bits/extc++.h>
 #include "lc.h"
 
+// 应该按照截止时间优先，来排序
 // -------------------------------------------------
 namespace {
 using namespace std;
 
 // # define DUMP(args...)
+int cur = 0;
 class Solution {
+    using Pair = std::pair<int, int>;
 public:
-    bool func(int arg0, int arg1, int arg2, int arg3) {
-        return true;
+    int maxEvents(vector<vector<int>>& events) {
+        vector<Pair> e;
+        for (auto& vec : events)
+            e.push_back({vec[0], vec[1]});
+
+        int r = 0;
+        cur = 0;
+        // DUMP(e);
+        // n ^ 2, 难道要用到heap！ 
+        // TODO 为什么超时
+        for (int i = 0; i < e.size(); ++i) {
+            auto cmp = [](const Pair& a, const Pair& b){
+                int ka = std::max(a.first, cur+1);
+                int kb = std::max(b.first, cur+1);
+                return Pair{ka, a.second} < Pair{kb, b.second};
+            };
+            std::nth_element(e.begin()+i, e.begin()+i, e.end(), cmp);
+            auto& kv = *(e.begin()+i);
+            // DUMP(kv);
+            if (kv.second <= cur) {
+                // DUMP("  ignore");
+                continue;
+            }
+            r += 1;
+            cur = std::max(kv.first, cur+1);
+            // DUMP("  pick", cur);
+        }
+
+        // vector<Pair> e;
+        // for (auto& vec : events)
+        //     e.push_back({vec[1], vec[0]});
+        // std::sort(e.begin(), e.end());
+        // int r = 0;
+        // cur = 0;
+        // for (auto& kv : e) {
+        //     if (kv.second <= cur) {
+        //         DUMP("  ignore");
+        //         continue;
+        //     }
+        //     r += 1;
+        //     cur = std::max(kv.first, cur+1);
+        //     DUMP("  pick", cur);
+        // }
+        return r;
     }
 };
 
@@ -27,16 +72,10 @@ void Solve() {
     DUMP("------", idx, in, out);
     idx +=1;
 
-    #define FUNC func
-    #define ARGS arg0, arg1, arg2, arg3
-    int arg0;
-    int arg1;
-    int arg2;
-    int arg3;
-    lc::ParseArg(in[0], arg0);
-    lc::ParseArg(in[1], arg1);
-    lc::ParseArg(in[2], arg2);
-    lc::ParseArg(in[3], arg3);
+    #define FUNC maxEvents
+    #define ARGS events
+    vector<vector<int>> events;
+    lc::ParseArg(in[0], events);
     DUMP(ARGS);
 
     Solution sol;

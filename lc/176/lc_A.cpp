@@ -9,8 +9,15 @@ using namespace std;
 // # define DUMP(args...)
 class Solution {
 public:
-    bool func(int arg0, int arg1, int arg2, int arg3) {
-        return true;
+    int countNegatives(vector<vector<int>>& grid) {
+        // int m = grid.size();
+        // int n = grid[0].size();
+        int r = 0;
+        for (auto& vec : grid)
+            for (auto v : vec)
+                if (v < 0)
+                    r += 1;
+        return r;
     }
 };
 
@@ -27,16 +34,10 @@ void Solve() {
     DUMP("------", idx, in, out);
     idx +=1;
 
-    #define FUNC func
-    #define ARGS arg0, arg1, arg2, arg3
-    int arg0;
-    int arg1;
-    int arg2;
-    int arg3;
-    lc::ParseArg(in[0], arg0);
-    lc::ParseArg(in[1], arg1);
-    lc::ParseArg(in[2], arg2);
-    lc::ParseArg(in[3], arg3);
+    #define FUNC countNegatives
+    #define ARGS grid
+    vector<vector<int>> grid;
+    lc::ParseArg(in[0], grid);
     DUMP(ARGS);
 
     Solution sol;
