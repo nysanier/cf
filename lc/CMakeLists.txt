@@ -12,6 +12,7 @@ add_subdirectory(172)
 add_subdirectory(173)
 add_subdirectory(174)
 add_subdirectory(175)
+add_subdirectory(176)
 
 # biweekly
 add_subdirectory(b16)
@@ -20,4 +21,4 @@ add_subdirectory(b18)
 add_subdirectory(b19)
 
 # template
-add_subdirectory(tmp999)
+add_subdirectory(TMP-999)
