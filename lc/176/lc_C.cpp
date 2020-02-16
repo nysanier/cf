@@ -2,7 +2,11 @@
 // #include <bits/extc++.h>
 #include "lc.h"
 
-// 应该按照截止时间优先，来排序
+// 每个时间点，选择符合条件，且截止时间最早的哪个event
+//   用一个heap保存当前符合条件的所有event
+//   c++还是比python效率高很多！！
+// 0 分钟	最多可以参加的会议数目	通过	372 ms	cpp
+// 2 小时，49 分钟	最多可以参加的会议数目	通过	1356 ms	python3
 // -------------------------------------------------
 namespace {
 using namespace std;
@@ -13,48 +17,25 @@ class Solution {
     using Pair = std::pair<int, int>;
 public:
     int maxEvents(vector<vector<int>>& events) {
-        vector<Pair> e;
-        for (auto& vec : events)
-            e.push_back({vec[0], vec[1]});
-
+        // vector<vector<int>> 等同于 vector<pair<int,int>> 的排序效果
+        std::sort(events.begin(), events.end());
+        // 默认是大堆！这里要小堆！
+        priority_queue<int, vector<int>, greater<int>> pq;
+        int idx = 0;
         int r = 0;
-        cur = 0;
-        // DUMP(e);
-        // n ^ 2, 难道要用到heap！ 
-        // TODO 为什么超时
-        for (int i = 0; i < e.size(); ++i) {
-            auto cmp = [](const Pair& a, const Pair& b){
-                int ka = std::max(a.first, cur+1);
-                int kb = std::max(b.first, cur+1);
-                return Pair{ka, a.second} < Pair{kb, b.second};
-            };
-            std::nth_element(e.begin()+i, e.begin()+i, e.end(), cmp);
-            auto& kv = *(e.begin()+i);
-            // DUMP(kv);
-            if (kv.second <= cur) {
-                // DUMP("  ignore");
-                continue;
+        for (int cur = 1; cur <= 1e5; ++cur) {
+            for (; idx < events.size(); ++idx) {
+                if (events[idx][0] > cur)
+                    break;
+                pq.push(events[idx][1]);
             }
-            r += 1;
-            cur = std::max(kv.first, cur+1);
-            // DUMP("  pick", cur);
+            while (!pq.empty()) {
+                auto t = pq.top(); pq.pop();
+                if (t < cur) continue;  // 无效了
+                r += 1;
+                break;
+            }
         }
-
-        // vector<Pair> e;
-        // for (auto& vec : events)
-        //     e.push_back({vec[1], vec[0]});
-        // std::sort(e.begin(), e.end());
-        // int r = 0;
-        // cur = 0;
-        // for (auto& kv : e) {
-        //     if (kv.second <= cur) {
-        //         DUMP("  ignore");
-        //         continue;
-        //     }
-        //     r += 1;
-        //     cur = std::max(kv.first, cur+1);
-        //     DUMP("  pick", cur);
-        // }
         return r;
     }
 };
