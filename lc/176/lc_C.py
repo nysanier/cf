@@ -25,10 +25,12 @@ if __name__ == "__main__":
     t, lin, lout = fn.parse_input()
     for i in range(t):
         sol = Solution()
-        fin = lin[i]
+        f = lin[i]
         fout = lout[i]
+
         # TODO 修改下面这行, 和函数参数匹配即可！
-        args = [fin['events']]
+        args = [ f['events'] ]
         r = sol.maxEvents(*args)
+    
         print('out = %s; r = %s' % (fout, r))
 

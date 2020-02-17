@@ -1,2 +1,6 @@
 cbuild*
+
 .vscode/settings.json
+
+*.pyc
+*.pyo
