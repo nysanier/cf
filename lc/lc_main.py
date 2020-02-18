@@ -2,7 +2,7 @@ from typing import List
 
 class Solution:
     def test(self, arg0):
-        pass
+        return 0
 
 if __name__ == "__main__":
     import parse_input as fn
