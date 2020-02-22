@@ -19,6 +19,7 @@ add_subdirectory(b16)
 add_subdirectory(b17)
 add_subdirectory(b18)
 add_subdirectory(b19)
+add_subdirectory(b20)
 
 # template
 add_subdirectory(TMP-999)
