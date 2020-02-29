@@ -32,35 +32,37 @@ def eval_input(__s):
 
 
 # --------- parse input
-def read_input():
+def read_input(str_input=None):
     fp = '/Users/nysanier/git/cf/input.txt'
     # 0 读一个值，表示case数
-    with open(fp) as f:
-        t = int(f.readline())
-        lin = []
-        lout = []
-        fin = ''
-        while True:
-            # 包含行尾！！ 返回str!! EOF=len(0), 空行=len(1)
-            ln = f.readline()
-            if not ln:  # 结束了
-                break
-            if fin:
-                # 结束输入
-                if ln.startswith('输出：'):
-                    fout = ln[3:]
-                    lout.append(fout)
-                    lin.append(fin)
-                    fin = ''
-                else:  # 合并多行输入
-                    fin += ln
-            if ln.startswith('输入：'):
-                assert fin == ''
-                fin += ln[3:]
+    if str_input is None:
+        with open(fp) as f:
+            str_input = f.readlines()
+
+    lines = str_input.split('\n')
+    t = int(lines[0])
+    lin = []
+    lout = []
+    fin = ''
+    for line in lines[1:]:
+        # 包含行尾！！ 返回str!! EOF=len(0), 空行=len(1)
+        ln = line
+        if fin:
+            # 结束输入
+            if ln.startswith('输出：'):
+                fout = ln[3:]
+                lout.append(fout)
+                lin.append(fin)
+                fin = ''
+            else:  # 合并多行输入
+                fin += ln
+        if ln.startswith('输入：'):
+            assert fin == ''
+            fin += ln[3:]
     return t, lin, lout
 
-def parse_input():
-    t, lin, lout = read_input()
+def parse_input(str_input):
+    t, lin, lout = read_input(str_input)
     # print(t)
     # print(lin)
     # print(lout)
@@ -75,11 +77,11 @@ def parse_input():
     # print(pout)
     return t, pin, pout
 
-
+str_input = ''''''
 
 if __name__ == "__main__":
     # t, lin, lout = read_input()
-    t, pin, pout = parse_input()
+    t, pin, pout = parse_input(str_input)
     import pprint
     pp = pprint.PrettyPrinter(indent=4)
     # pp.pprint(t)

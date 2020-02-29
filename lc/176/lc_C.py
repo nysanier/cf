@@ -20,9 +20,40 @@ class Solution:
         return r
 
 
+str_input = '''5
+示例 1：
+
+输入：events = [[1,2],[2,3],[3,4]]
+输出：3
+解释：你可以参加所有的三个会议。
+安排会议的一种方案如上图。
+第 1 天参加第一个会议。
+第 2 天参加第二个会议。
+第 3 天参加第三个会议。
+示例 2：
+
+输入：events= [[1,2],[2,3],[3,4],[1,2]]
+输出：4
+示例 3：
+
+输入：events = [[1,4],[4,4],[2,2],[3,4],[1,1]]
+输出：4
+示例 4：
+
+输入：events = [[1,100000]]
+输出：1
+示例 5：
+
+输入：events = [[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7]]
+输出：7
+
+'''
+
 if __name__ == "__main__":
-    import parse_input as fn
-    t, lin, lout = fn.parse_input()
+    import os, sys
+    sys.path.append('/Users/nysanier/git/cf/lc')
+    import fn
+    t, lin, lout = fn.parse_input(str_input)
     for i in range(t):
         sol = Solution()
         f = lin[i]
