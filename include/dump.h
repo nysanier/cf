@@ -4,6 +4,7 @@
 
 namespace std {
     // basic.../bool/char/string
+    string to_string(void* p) { return "0x-"+std::to_string(long(p)); };
     string to_string(bool b) { return b ? "true" : "false"; };
     string to_string(char ch) { return "'" + string(1, ch) + "'"; }
     string to_string(const string& str) { return "\"" + str + "\""; }
