@@ -41,16 +41,16 @@ void Solve() {
     DUMP("------", idx, in, out);
     idx +=1;
 
-    #define FUNC func
-    #define ARGS arg0, arg1, arg2, arg3
-    int arg0;
+    #define FUNC numOfSubarrays
+    #define ARGS arg0, arg1, arg2
+    vector<int> arg0;
     int arg1;
     int arg2;
-    int arg3;
+    // int arg3;
     lc::ParseArg(in[0], arg0);
     lc::ParseArg(in[1], arg1);
     lc::ParseArg(in[2], arg2);
-    lc::ParseArg(in[3], arg3);
+    // lc::ParseArg(in[3], arg3);
     DUMP(ARGS);
 
     Solution sol;
