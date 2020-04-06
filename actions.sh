@@ -8,5 +8,3 @@ make test_abbr
 
 # make check
 test/test_abbr
-
-exit 1
