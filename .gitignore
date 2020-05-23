@@ -4,3 +4,6 @@ cbuild*
 
 *.pyc
 *.pyo
+
+.idea
+*.a
