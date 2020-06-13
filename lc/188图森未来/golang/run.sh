@@ -3,7 +3,9 @@ set -e
 
 # 定义 GOPATH
 abspath=$(cd "$(dirname "$0")"; pwd)
-export GOPATH=$abspath
+abspath=$(cd "$(dirname "$0")"; pwd)
+pkgpath="$abspath/../../../golang"
+export GOPATH=$pkgpath:$abspath
 
 # 编译
 ut="A"

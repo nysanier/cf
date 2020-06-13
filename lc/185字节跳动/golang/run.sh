@@ -3,10 +3,11 @@ set -e
 
 # 定义 GOPATH
 abspath=$(cd "$(dirname "$0")"; pwd)
-export GOPATH=$abspath
+pkgpath="$abspath/../../../golang"
+export GOPATH=$pkgpath:$abspath
 
 # 编译
-ut="A"
+ut="C"
 if (( $# >= 1 )); then  # 参数个数, 会忽略掉命令本身的1个
     ut="$1"
 fi
