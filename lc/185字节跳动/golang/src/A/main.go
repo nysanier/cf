@@ -62,7 +62,7 @@ type Out string
 func main() {
 	log.SetFlags(log.Lshortfile | log.Lmicroseconds)
 
-	reader := fnpkg.NewReader1()
+	reader := fnpkg.NewLCReader1()
 	InList, OutList := reader.ReadIOList(textOriginal)
 
 	lin := len(InList)

@@ -61,7 +61,7 @@ func main() {
 	// 	`["Push","Pop","Push","Push","Push"]`,
 	// }
 
-	reader := fnpkg.NewReader1()
+	reader := fnpkg.NewLCReader1()
 	InList, OutList := reader.ReadIOList(textOriginal)
 
 	lin := len(InList)

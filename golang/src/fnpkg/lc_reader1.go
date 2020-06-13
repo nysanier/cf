@@ -12,7 +12,7 @@ import (
 // 2 校验匹配
 // 3 将key=val转化为"key":val，然后整体包上{}
 
-type Reader1 interface {
+type LCReader1 interface {
 	ReadIOList(text string) ([]string, []string)
 	// in 和 out 必须是指针，否则无法返回结果
 	Read(text string, v interface{})    // 类似json.Unmarshal
@@ -20,7 +20,7 @@ type Reader1 interface {
 	Write(v interface{}) string
 }
 
-func NewReader1() Reader1 {
+func NewLCReader1() LCReader1 {
 	impl := new(reader1Impl)
 	// impl.Data = text
 	return impl

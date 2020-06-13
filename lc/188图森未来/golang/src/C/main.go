@@ -49,7 +49,7 @@ func main() {
 输入：n = 7, edges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], hasApple = [false,false,false,false,false,false,false]
 输出：0
 `
-	reader := fnpkg.NewReader1()
+	reader := fnpkg.NewLCReader1()
 	InList, OutList := reader.ReadIOList(textOriginal)
 
 	lin := len(InList)
