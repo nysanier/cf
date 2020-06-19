@@ -108,6 +108,9 @@ func initVars() {
 }
 
 // TODO 7 实现算法
+// 至少需要k*m朵花
+// 将花开的时间排一个序，二分找一个最少的花开的天数即可。
+// NlogN，N的地方getCount应该还可以优化一下!
 func minDays(bloomDay []int, m int, k int) int {
 	n := len(bloomDay)
 	arr := make([]int, n)
@@ -138,16 +141,16 @@ func minDays(bloomDay []int, m int, k int) int {
 
 func getCount(bloomDay []int, limit int, k int) int {
 	r := 0
-	c := 0  // 当前已经连续的话数量，达到k多，可以构成一束
+	c := 0 // 当前已经连续的话数量，达到k多，可以构成一束
 	for _, v := range bloomDay {
 		if v > limit {
-			c = 0  // 不连续了，重置
+			c = 0 // 不连续了，重置
 			continue
 		}
 
 		// 累计
 		c += 1
-		if c == k {  // 累计到1束的两
+		if c == k { // 累计到1束的两
 			r += 1
 			c = 0
 		}
