@@ -46,6 +46,9 @@ func (*reader1Impl) ReadIOList(text string) ([]string, []string) {
 		p1 := strings.Index(line, "输入：")
 		p2 := strings.Index(line, "输出：")
 		if p1 < 0 && p2 < 0 {
+			if len(s1) == len(s2)+1 { // 输入允许多行的的
+				s1[len(s1)-1] += strings.TrimSpace(line) // 不trim的话json还解析不出来?
+			}
 			continue
 		}
 
